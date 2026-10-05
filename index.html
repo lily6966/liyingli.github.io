@@ -124,6 +124,19 @@
   .theme-media .main { aspect-ratio: 4/3; border-radius: 20px; box-shadow: var(--shadow); }
   .theme-media .inset { position: absolute; width: 38%; aspect-ratio: 1; right: -18px; bottom: -24px; border-radius: 16px; border: 5px solid var(--bg); box-shadow: var(--shadow); }
   .theme.flip .inset { right: auto; left: -18px; }
+  .theme-nav { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin: -8px 0 56px; }
+  .theme-nav button { display: flex; flex-direction: column; justify-content: flex-start; text-align: left; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); color: var(--text); font: inherit; font-weight: 500; font-size: .92rem; cursor: pointer; transition: .15s; }
+  .theme-nav button:hover { border-color: var(--accent); color: var(--accent); }
+  .theme-nav span { display: block; font-family: "Fraunces", serif; font-size: 1.3rem; color: var(--accent); margin-bottom: 2px; }
+  .theme { scroll-margin-top: 90px; margin-bottom: 32px; }
+  .theme-title { font-size: 1.55rem; }
+  .theme-detail { padding: 28px 30px; margin-bottom: 40px; }
+  .points { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 36px; margin-top: 8px; }
+  .points h4 { font-size: .98rem; font-weight: 600; margin: 12px 0 4px; }
+  .points p { margin: 0; color: var(--muted); font-size: .95rem; }
+  .closing { margin: 22px 0 0; padding-top: 18px; border-top: 1px solid var(--line); font-size: .98rem; }
+  .figure { margin: 0 0 80px; }
+  @media (max-width: 760px) { .points { grid-template-columns: 1fr; } .theme-detail { padding: 22px; } }
   .theme .num { font-family: "Fraunces", serif; font-size: 3rem; color: var(--accent); line-height: 1; opacity: .5; }
   .theme-media:hover .main img { transform: scale(1.03); }
   @media (max-width: 820px) {
@@ -132,7 +145,7 @@
     .theme-media .inset { right: 10px; } .theme.flip .inset { left: 10px; }
   }
 
-  .figure { margin: -24px 0 80px; padding: 20px; }
+  .figure { padding: 20px; }
   .figure .ph { background: #fff; border-radius: 10px; }
   .figure .ph img { object-fit: contain; height: auto; max-height: 760px; margin: 0 auto; width: auto; max-width: 100%; }
   .figure figcaption { font-size: .88rem; color: var(--muted); margin-top: 12px; }
@@ -156,6 +169,32 @@
   .project.featured .body { padding: 36px; justify-content: center; }
   .project.featured h3 { font-size: 1.7rem; }
   .project.featured .links { margin-top: 8px; }
+  .project .ph.fig { background: #fff; }
+  .project .ph.fig img { object-fit: contain; }
+  .project.side { overflow: clip; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: start; }
+  .project.side > .ph { aspect-ratio: auto; min-height: 0; padding: 16px; position: sticky; top: 80px; }
+  .project.side .ph img { height: auto; }
+  .project.side .body { padding: 30px 32px 30px 12px; }
+  .project.side .body > p.meta { font-size: .95rem; line-height: 1.7; color: var(--text); }
+  .project.side:hover, .project.side:hover .ph img { transform: none; }
+  .project.side > .ph > .badge { top: 24px; left: 24px; }
+  .extra { display: flex; align-items: center; gap: 12px; margin-top: 14px; }
+  .extra .ph { min-height: 0 !important; aspect-ratio: 1 !important; flex: 0 0 84px; width: 84px; height: 84px; border-radius: 10px; border: 1px solid var(--line); padding: 0 !important; }
+  .extra .ph img { object-fit: cover; height: 100% !important; }
+  .project.wide { grid-template-columns: 1fr; }
+  .project.wide .ph { aspect-ratio: auto; min-height: 0; padding: 16px 16px 0; }
+  .project.wide .ph img { height: auto; max-height: 560px; }
+  .project.wide .body { padding: 28px 36px 32px; }
+  .project.wide .body > p.meta { font-size: .98rem; line-height: 1.7; color: var(--text); max-width: 900px; }
+  .project.wide:hover { transform: none; }
+  .project.wide:hover .ph img { transform: none; }
+  .subtitle { color: var(--muted); margin: -4px 0 16px; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 18px; }
+  .stats div { background: var(--accent-soft); border-radius: 12px; padding: 12px 14px; }
+  .stats b { display: block; font-family: "Fraunces", serif; font-size: 1.35rem; color: var(--accent); line-height: 1.2; }
+  .stats span { font-size: .78rem; color: var(--muted); }
+  .project.wide .body > p.fig-cap { font-size: .85rem; margin-top: 14px; color: var(--muted); }
+  @media (max-width: 820px) { .project.side { grid-template-columns: 1fr; } .project.side .body { padding: 22px; } .stats { grid-template-columns: 1fr 1fr; } .project.wide .body { padding: 22px; } .project.featured h3 { font-size: 1.3rem; } }
   @media (max-width: 820px) { .project.featured { grid-template-columns: 1fr; } .project.featured .ph { min-height: 220px; } }
 
   /* ================= PUBLICATIONS ================= */
@@ -200,6 +239,28 @@
   .btn { margin-top: 16px; padding: 10px 22px; border: 0; border-radius: 999px; background: var(--accent); color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
   @media (max-width: 820px) { .contact { grid-template-columns: 1fr; } .contact .ph { min-height: 240px; } .contact .body { padding: 24px; } }
 
+  .project[data-open] { cursor: pointer; }
+  .project[data-open]:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .project .ph.cover-fig { background: #fff; }
+  .project .ph.cover-fig img { object-fit: contain; padding: 30px 10px 6px; }
+  .project .more { color: var(--accent); font-weight: 600; }
+
+  /* ================= PROJECT POP-UP ================= */
+  .modal { position: fixed; inset: 0; z-index: 90; background: rgba(8,16,24,.6); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; padding: 24px; }
+  .modal.open { display: flex; animation: fade .25s ease; }
+  .modal-panel { position: relative; background: var(--surface); border-radius: 20px; width: min(980px, 100%); max-height: calc(100vh - 48px); overflow-y: auto; box-shadow: 0 30px 80px rgba(0,0,0,.35); }
+  .modal-close { position: sticky; top: 14px; float: right; margin: 14px 14px 0 0; z-index: 2; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--text); font-size: 22px; cursor: pointer; }
+  .modal-fig { background: #fff; padding: 24px 24px 8px; border-bottom: 1px solid var(--line); }
+  .modal-fig img { max-height: 60vh; width: auto; max-width: 100%; margin: 0 auto; cursor: zoom-in; }
+  .modal-text { padding: 28px 36px 34px; }
+  .modal-text h2 { font-size: 1.6rem; margin-bottom: 6px; }
+  .modal-text h4 { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 22px 0 8px; }
+  .modal-text .abstract { font-size: 1rem; line-height: 1.75; }
+  .modal-text .fig-cap { font-size: .85rem; margin-top: 16px; }
+  .modal-text .links { margin-top: 18px; display: flex; gap: 16px; font-weight: 600; }
+  .modal .extra .ph { width: 84px; height: 84px; flex: 0 0 84px; border-radius: 10px; border: 1px solid var(--line); background: #fff; }
+  @media (max-width: 700px) { .modal { padding: 0; } .modal-panel { border-radius: 0; max-height: 100vh; height: 100%; } .modal-text { padding: 22px; } .modal-fig { padding: 16px 12px 6px; } }
+
   /* ================= LIGHTBOX ================= */
   .lb { position: fixed; inset: 0; z-index: 100; background: rgba(8,12,10,.92); display: none; align-items: center; justify-content: center; flex-direction: column; padding: 24px; }
   .lb.open { display: flex; }
@@ -222,7 +283,6 @@
       <a href="#research">Research</a>
       <a href="#projects">Projects</a>
       <a href="#publications">Publications</a>
-      <a href="#working-groups">Working Groups</a>
       <a href="#contact">Contact</a>
     </nav>
     <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
@@ -234,11 +294,14 @@
   <section id="tab-research"></section>
   <section id="tab-projects"></section>
   <section id="tab-publications"></section>
-  <section id="tab-working-groups"></section>
   <section id="tab-contact"></section>
 </main>
 
 <footer>© <span id="yr"></span> Your Name · Hosted on GitHub Pages</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="modal-panel"><button class="modal-close" aria-label="Close">×</button><div class="modal-body"></div></div>
+</div>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true">
   <button class="x" aria-label="Close">×</button>
@@ -289,36 +352,142 @@ const SITE = {
   ],
 
   research: {
-    intro: "My work connects climate projections, population genetics, and long-term monitoring to understand which coastal populations are most at risk, and where to look.",
+    intro: "I build theory-guided AI for ecology and evolution: models that respect biological structure, report honest uncertainty, and hold up when the world moves outside the data they were trained on. The six themes below run from genes to ecosystems to the decisions people make about them.",
     themes: [
-      { img: "images/photos/fish-school.jpg", inset: "images/photos/cobia.jpg", title: "Climate exposure & genetic diversity",
-        text: "Predicting genetic diversity (expected heterozygosity, He) along the California coast for nearshore species, including kelp, eelgrass, a goby, and a whelk, and pairing it with projected climate exposure under SSP5-8.5 across CMIP6 models. Placing populations on a diversity-by-exposure plane separates resilient from at-risk and critical ones.",
-        tags: ["Population genetics", "CMIP6", "Uncertainty"],
+      { short: "Genetic diversity", img: "images/photos/fish-school.jpg", inset: "images/photos/cobia.jpg",
+        title: "Theory-guided AI for genetic diversity and eco-evolutionary resilience",
+        summary: "Genetic diversity is the raw material of adaptation, and now a formal target of the Kunming–Montreal Global Biodiversity Framework. It is also the least observed level of biodiversity: genomic sampling is costly, sparse and taxonomically skewed, so most species in most places have no estimates at all. I treat this as a prediction problem with very few labels and unusually strong theory, the setting where theory-guided AI should beat both classical landscape genetics and unconstrained deep learning.",
+        points: [
+          { h: "Gene flow as a graph", text: "Sampled populations become nodes and gene flow becomes edges, weighted by landscape and seascape resistance rather than straight-line distance. Models predict heterozygosity, allelic richness, effective population size and differentiation at unsampled places and for unsampled species." },
+          { h: "Evolutionary theory as constraints", text: "Coalescent and Wright–Fisher expectations (isolation by distance and by environment, and the Ne–census size relationship) enter as priors and loss constraints. The model is penalized for evolutionarily impossible predictions, even when they fit the data." },
+          { h: "Borrowing strength across species", text: "Multi-task and transfer learning let well-sampled taxa inform poorly sampled ones. Hierarchical priors share information across the phylogeny while still allowing species-specific deviation." },
+          { h: "Uncertainty that decisions can use", text: "Calibrated uncertainty is a first-class output. Models are judged by decision regret under held-out and adversarial sampling designs, not by accuracy alone: a model that is confidently wrong about where adaptive capacity lies is worse than no model." },
+        ],
+        closing: "Conservation genomics still relies mostly on summary statistics and linear models, and it has no shared benchmark for spatial prediction of genetic variation. Building one, with open implementations, is a goal in its own right.",
+        tags: ["Population genetics", "Graph models", "Transfer learning", "Uncertainty"],
         figure: { img: "images/figures/genetic-diversity-exposure.jpg",
-          caption: "<b>Predicted He along the California coast and Δ-climate exposure.</b> (a–d) Predicted He by latitude with 68%/95% CIs and observed populations; (e–f) change-based exposure components and spread across GCMs; (g) California populations against the global distribution." } },
-      { img: "images/photos/red-drum.jpg", inset: "images/photos/seatrout-zones.jpg", title: "Graph neural networks for estuary monitoring",
-        text: "Treating 596 fisheries monitoring stations across four Florida estuaries (Apalachicola Bay, Cedar Key, Tampa Bay, and Charlotte Harbor) as a graph. Each station is linked to its nearest neighbors within the same bay (1,811 edges), so a model can learn from nearby sites.",
-        tags: ["Graph neural networks", "Fisheries", "Florida"],
-        figure: { img: "images/figures/florida-gnn-network.jpg",
-          caption: "<b>The Florida sampling graph.</b> (a) All stations by bay; (b) one target station and its five k-NN neighbors in Charlotte Harbor; (c–f) within-bay networks for each estuary." } },
-      { img: "images/photos/pelicans.jpg", inset: "images/photos/egret.jpg", title: "Coastal birds & food webs",
-        text: "✏️ A third theme, or delete this block. For example: how seabirds and wading birds connect to the fish communities in these estuaries.",
-        tags: ["Seabirds", "Food webs"] },
+          caption: "<b>Predicted genetic diversity and climate exposure for coastal species.</b> (a–d) Predicted He along the California coast with 68%/95% intervals and observed populations; (e–f) components of projected Δ-climate exposure and spread across climate models; (g) California populations against the global distribution of He." } },
+
+      { short: "Foundation models", img: "images/art/sequence.jpg",
+        title: "Foundation models for genomic and protein sequences, across biological scales",
+        summary: "Genomic and protein language models learn transferable representations of biological structure and function at scale, supporting annotation, variant-effect prediction and protein design. That is the same property I have pursued by hand through domain-informed priors and architectural constraints. Understanding when each route works best, and how to combine them, is a question I want to work on directly.",
+        points: [
+          { h: "Linking molecules to ecosystems", text: "Multimodal models that jointly represent sequence, organismal traits, environment and Earth observation, so the path from genetic variation to adaptation, distribution and response to change can be studied within one model instead of a chain of separate analyses." },
+          { h: "Functional priors for landscape genomics", text: "Sequence embeddings are aligned with environmental and trait data through cross-attention and contrastive objectives. Variant-effect predictions then serve as functional priors in genotype–environment association, replacing the linear ordination methods common today." },
+          { h: "Validated against real organisms", text: "Models are tested against measurable outcomes such as thermal tolerance, phenology and range limits, not only in-silico benchmarks." },
+          { h: "Do these models generalize to wild species?", text: "Biological foundation models are trained mostly on human, model-organism and clinical data. I am building benchmarks that measure representation quality as a function of phylogenetic distance from the training data, calibrated uncertainty on out-of-distribution sequences, and efficient adaptation to data-poor clades." },
+        ],
+        closing: "This theme and the genetic-diversity theme are two ends of one question: one predicts <em>where</em> adaptive capacity lies, the other asks <em>what</em>, mechanistically, it consists of.",
+        tags: ["Genomic language models", "Protein models", "Multimodal learning", "Distribution shift"] },
+
+      { short: "Species distributions", img: "images/photos/pelicans.jpg", inset: "images/photos/egret.jpg",
+        title: "Deep learning for species distribution modeling",
+        summary: "Species distribution models underpin range-shift projections, protected-area design and environmental review. They are also a hard machine-learning problem: presence-only and detection/non-detection data, absence confounded with failure to detect, survey effort concentrated near roads and cities, and hundreds of co-occurring species modeled one at a time. Deep learning can tackle these problems together, but only if the architecture is built around them.",
+        points: [
+          { h: "What I've built", text: "Deep hurdle models that separate occurrence from abundance, used to estimate the risk of losing avian functional diversity under climate change from zero-heavy citizen-science counts. Deep SDMs that recover hurricane-driven displacement of bird communities, and spatiotemporal adaptive ensembles extended to storm-surge impacts on bird diversity." },
+          { h: "An explicit observation model", text: "The ecological process (where a species is and how many) and the observation process (detection given effort, skill, timing and protocol) are separate network components trained together. Structured surveys, eBird checklists, telemetry and museum records can then share a single likelihood." },
+          { h: "Whole communities at once", text: "Shared representations across species through deep multivariate probit and latent-factor models, with trait- and phylogeny-informed species embeddings so rare species borrow strength from ecologically similar common ones." },
+          { h: "Space and time as inputs", text: "Multi-scale Earth-observation patches and climate and habitat time series replace point-extracted covariates, producing dynamic distributions at weekly to seasonal resolution instead of static range maps." },
+        ],
+        closing: "Evaluation uses spatially and temporally blocked designs, transfer to new regions and future periods, calibration of predicted occupancy and decision regret, because random cross-validation on autocorrelated data overstates skill.",
+        tags: ["Deep SDMs", "Citizen science", "Joint species models", "Earth observation"] },
+
+      { short: "Climate extremes", img: "images/photos/gull.jpg", inset: "images/photos/seatrout-zones.jpg",
+        title: "Forecasting ecosystem response to climate extremes",
+        summary: "Conservation strategies calibrated on historical conditions are failing because future environments will not resemble past ones. Stated plainly, this is an out-of-distribution generalization problem, one of the open problems in machine learning. Models must predict responses to conditions never observed, from training data dominated by ordinary years, when the events that matter most are rare by definition.",
+        points: [
+          { h: "What we've learned", text: "My work on hurricane-driven bird displacement and on functional diversity loss under sea-level rise shows that discrete extreme events produce responses that smooth climate-envelope models systematically miss." },
+          { h: "Learning from rare events", text: "Spatiotemporal adaptive ensembles that reweight toward extremes instead of averaging them away, and architectures that separate lasting redistribution from temporary displacement." },
+          { h: "Stress-testing before decisions", text: "Generative approaches that simulate plausible but unobserved conditions, so predictions are stress-tested before consequential decisions rest on them." },
+          { h: "Honest evaluation", text: "Performance is measured under deliberate distribution shift, holding out entire classes of events rather than random subsets." },
+        ],
+        closing: "Coasts with repeated, well-documented hurricane and storm-surge impacts, dense long-term monitoring and immediate sea-level-rise decisions are ideal places to develop and test these methods.",
+        tags: ["Extreme events", "Out-of-distribution", "Hurricanes", "Sea-level rise"] },
+
+      { short: "Data management", img: "images/art/data.jpg", inset: "images/photos/red-drum.jpg",
+        title: "Language models for environmental and ecological data management",
+        summary: "Environmental science is not short of data; it is short of usable data. Decades of monitoring and synthesis projects sit in repositories with incomplete metadata, inconsistent units and taxonomies, and undocumented methods. FAIR principles are widely endorsed and rarely achieved, because the work they require is skilled, tedious and seldom funded. Working at NCEAS has made clear to me that this curation bottleneck now limits environmental AI as much as model architecture does.",
+        points: [
+          { h: "Core curation tasks", text: "Drafting and validating metadata in standards such as the Ecological Metadata Language; annotating variables, units and methods against ontologies; reconciling taxonomic names; matching schemas across monitoring programs; and flagging implausible values, unit errors and protocol changes." },
+          { h: "Agentic, verifiable pipelines", text: "The language model proposes; deterministic tools (unit converters, taxonomic authorities, geospatial validators, schema checkers) verify; and a human curator approves. Every transformation is recorded as reproducible code." },
+          { h: "Reliability first", text: "Constrained generation into metadata schemas, confidence calibrated against curator corrections, abstention when evidence is thin, and active learning that sends the most uncertain records to human experts." },
+          { h: "An open benchmark", text: "Expert-curated archives such as the Knowledge Network for Biocomplexity and DataONE make it possible to measure curation accuracy rather than assert it." },
+        ],
+        closing: "This is the data foundation for everything else: species distribution and genetic-diversity models are limited less by architecture than by how many well-documented observations can be assembled.",
+        tags: ["LLMs", "FAIR data", "Metadata", "Human-in-the-loop"] },
+
+      { short: "Decision support", img: "images/art/network.jpg", inset: "images/photos/egret.jpg",
+        title: "Retrieval-grounded language models for environmental decision support",
+        summary: "Earth observation and AI have vastly increased the environmental information available to decision-makers, but accessing, synthesizing and interpreting it is now the bottleneck. Practitioners spend more effort finding and reconciling reports, databases, geospatial products and regulations than analyzing them. I develop domain-specific assistants that make this knowledge queryable in plain language while keeping every claim traceable to its source.",
+        points: [
+          { h: "Grounded, not just fluent", text: "Fluent environmental text is easy, and that is precisely the danger. The goal is systems whose outputs are grounded, auditable and honest about their limits." },
+          { h: "Answers come from models", text: "Retrieval-augmented generation over geospatial databases, monitoring programs and the calibrated models from the themes above. A question like “which restoration sites improve both habitat connectivity and flood attenuation, and how confident are we?” is answered by running a model, not by generating plausible prose." },
+          { h: "New evaluation tools", text: "Benchmarks for factual grounding in scientific decision support, methods for carrying model uncertainty through a language interface, and abstention when the evidence does not support an answer." },
+          { h: "Built to transfer", text: "The same grounding and evaluation machinery applies wherever experts reason over heterogeneous technical evidence: clinical guidelines, materials literature, legal and regulatory texts, archives." },
+        ],
+        tags: ["RAG", "Decision support", "Trustworthy AI", "Uncertainty"] },
     ]
   },
 
-  // featured: true makes a project span the full width with a big photo
+  // Projects: cover = photo on the card; click a card to open a pop-up with the figure (img), abstract (text), stats, tags and links.
   projects: [
-    { img: "images/figures/florida-gnn-network-thumb.jpg", title: "Florida Estuary Graph Model", badge: "GNN", category: "Modeling", featured: true,
-      text: "A graph neural network built on 596 monitoring stations in four Florida bays.", links: { "Code →": "#", "Paper": "#" } },
-    { img: "images/figures/genetic-diversity-exposure-thumb.jpg", title: "Genetic Diversity × Climate Exposure", badge: "Synthesis", category: "Modeling",
-      text: "Predicted He for nearshore California species, compared against the global distribution.", links: { "Code →": "#" } },
-    { img: "images/photos/red-drum.jpg", title: "Estuarine Fish Communities", badge: "Fisheries", category: "Field",
-      text: "✏️ Describe the project.", links: { "Read more →": "#" } },
-    { img: "images/photos/cobia.jpg", title: "Project Name", badge: "Data", category: "Data",
-      text: "✏️ Describe the dataset or tool.", links: { "Dataset →": "#" } },
-    { img: "images/photos/egret.jpg", title: "Project Name", badge: "Birds", category: "Field",
-      text: "✏️ Describe the project.", links: { "Read more →": "#" } },
+    { cover: "images/photos/cobia.jpg", img: "images/figures/cobia-moe-ssm.png", badge: "Movement × SDM", category: "Modeling",
+      summary: "A Mixture-of-Experts model that couples CNN habitat suitability with LSTM movement dynamics to predict where cobia occur across the Gulf of America, now and under end-of-century climate change.",
+      title: "Movement-constrained species distributions: a Mixture-of-Experts Step Selection Model for cobia",
+      subtitle: "Cobia (<em>Rachycentron canadum</em>) · Gulf of America",
+      text: "Understanding species distributions requires integrating environmental suitability with movement, yet most species distribution models (SDMs) do not explicitly represent movement processes. Here, we develop a multiscale Mixture-of-Experts Step Selection Model (MoE-SSM) that couples CNN-derived habitat suitability with LSTM-derived movement dynamics to predict movement-constrained cobia (<em>Rachycentron canadum</em>) occurrence across the Gulf of America. The framework integrates acoustic telemetry, mark–recapture, and satellite tracking to represent movement from local space use to larger-scale displacement and seasonal migration. Habitat suitability identified a broad environmental envelope, whereas movement constrained predictions toward locations consistent with observed behavior. Integrating both components produced the strongest overall discrimination (AUC = 0.961; average precision = 0.757). Under end-of-century climate change conditions (SSP5-8.5), habitat suitability shifted substantially from the western and central Gulf toward the eastern Gulf and Florida–Atlantic margin, while changes in movement-constrained occurrence were smaller and more spatially restricted. Our framework bridges SDMs and movement ecology, providing a transferable approach for predicting how highly mobile species may redistribute under environmental change.",
+      stats: [["0.961", "AUC"], ["0.757", "Average precision"], ["3", "Tracking data types"], ["SSP5-8.5", "End-of-century scenario"]],
+      tags: ["CNN", "LSTM", "Mixture of Experts", "Step selection", "Telemetry"],
+      caption: "From model output to occurrence map: (a) the 101×101 log-probability grid (2 km/pixel) is (b) converted to probabilities with softmax and (c) binned into 0.1° cells; this repeats for every detection pair, the results are averaged, trimmed, smoothed and normalized into the final occurrence map.",
+      links: { "Paper →": "#", "Code": "#" } },
+    { cover: "images/photos/red-drum.jpg", img: "images/figures/nekton-bayesian-gnn.png", badge: "Bayesian GNN", category: "Modeling",
+      summary: "A Bayesian graph neural network with nested LSTMs, applied to 27 years of Florida estuary monitoring, shows how community composition, habitat and management shape nekton abundance.",
+      title: "Bayesian deep learning reveals the role of environmental and community metrics in predicting estuarine nekton populations",
+      subtitle: "Fish & macroinvertebrates · Florida estuaries · 27 years of monitoring",
+      text: "Understanding why species populations decline and how to assist population recovery has become one of the central challenges in ecosystem management and conservation. Existing predictive models are often limited by spatial and temporal autocorrelation, data scarcity for rare species, complex biotic interactions, and confounding environmental and management drivers. We developed a Bayesian Graph Neural Network with nested Long Short-Term Memory architecture (Bayesian GNN–nLSTM) that integrates graph neural networks, nested temporal modeling, Bayesian transfer learning, and interpretable predictor attribution within a unified framework. Applied to 27 years of fisheries-independent monitoring data from Florida estuaries, the framework accurately predicted fish and macroinvertebrate (nekton) abundance across multiple species and life stages. Biotic community composition was the strongest predictor of model accuracy, indicating that community structure captures substantial ecological information beyond the measured environmental variables. In contrast, habitat and management variables, including shoreline characteristics, submerged aquatic vegetation, and restoration activities, exerted stronger influences on predicted population abundance, suggesting that these factors primarily determine the abundance ecosystems can support rather than fine-scale spatial distributions. Lower predictive performance for recruit stages further indicates that stochastic early-life processes remain difficult to capture using environmental predictors alone.",
+      stats: [["27 yrs", "Fisheries-independent monitoring"], ["Multi-species", "Fish & macroinvertebrates, several life stages"], ["Bayesian", "Transfer learning & predictor attribution"]],
+      tags: ["Graph neural network", "Nested LSTM", "Bayesian transfer learning", "Interpretable AI", "Fisheries"],
+      caption: "Predicted mean counts across pairs of drivers for subadult red drum (a, c, e) and spotted seatrout recruits (b, d, f): temperature × salinity, temperature × prey community, and temperature or salinity × non-prey community.",
+      extra: [{ img: "images/figures/florida-gnn-network.jpg", thumb: "images/figures/florida-gnn-network-thumb.jpg", caption: "Florida sampling graph: monitoring stations in Apalachicola Bay, Cedar Key, Tampa Bay and Charlotte Harbor linked to their nearest within-bay neighbors." }],
+      links: { "Paper →": "#", "Code": "#" } },
+    { cover: "images/photos/fish-school.jpg", img: "images/figures/genetic-diversity-cnp.png", badge: "Population genomics", category: "Modeling",
+      summary: "A Conditional Neural Process pre-trained on 19,163 populations worldwide turns sparse genetic samples into fine-resolution maps of genetic diversity for 16 California coastal species.",
+      title: "Population genomics for conservation: downscaling sparse genetic data into fine-resolution diversity maps",
+      subtitle: "16 California coastal species · expected heterozygosity (He) & nucleotide diversity (π)",
+      text: "Genetic diversity underpins populations’ resiliency to environmental change, yet it remains poorly mapped because genetic sampling is sparse and spatially uneven. We developed a Conditional Neural Process (CNP) meta-learning framework to downscale sparse genetic observations into fine-resolution, spatially continuous predictions of population genetic diversity with quantified uncertainty. The model was pre-trained on 19,163 populations of 1,108 species globally and fine-tuned on 461 populations from 16 California coastal species, jointly modeling expected heterozygosity (He) and nucleotide diversity (π). Fine-scale predictors integrated 1-km terrestrial climate, marine environmental conditions, and land use pressure. Within-species leave-one-out evaluation showed strong predictive performance for He and π, while resolving within-species spatial variation (median per species) and outperforming inverse-distance weighting. Under SSP5–8.5 projections for 2081–2100, changes in genetic diversity were modest, mixed in direction, and species-specific, with little change in community-mean diversity. Vulnerability reflected the joint spatial patterns of standing genetic diversity and projected climate exposure rather than exposure alone. Our framework provides a practical approach for downscaling sparse genetic data into fine-resolution diversity maps, supporting the integration of population genetic variation into spatial conservation and climate vulnerability assessments.",
+      stats: [["19,163", "Populations in global pre-training (1,108 species)"], ["461", "California populations, 16 species"], ["1 km", "Climate & land-use predictors"], ["SSP5-8.5", "2081–2100 projections"]],
+      tags: ["Conditional Neural Process", "Meta-learning", "Transfer learning", "Uncertainty", "Climate vulnerability"],
+      caption: "Model skill: (a) observed vs. predicted He and (b) π for California coastal species; (c) within-species skill, comparing each population's deviation from its species mean; (d) global CNP pre-training on 6,245 populations across 1,108 species (R² = 0.81, RMSE = 0.098).",
+      extra: [{ img: "images/figures/genetic-diversity-exposure.jpg", thumb: "images/figures/genetic-diversity-exposure-thumb.jpg", caption: "Predicted He along the California coast and projected Δ-climate exposure, with California populations placed against the global distribution." }],
+      links: { "Paper →": "#", "Code": "#" } },
+    { cover: "images/figures/debias-framework-cover.jpg", img: "images/figures/debias-framework.png", badge: "Biodiversity AI", category: "Synthesis",
+      title: "Debiasing biodiversity data with deep learning",
+      subtitle: "Disentangling the ecological signal from the observation process",
+      summary: "Spatial, temporal, taxonomic, detection and protocol biases are one problem: the observation process is entangled with the ecological process. A framework for how deep learning can separate them, and how to evaluate it honestly.",
+      text: "Global biodiversity is changing rapidly due to climate change, habitat loss, and other human pressures, making predictive models indispensable for detecting ecological change, flagging vulnerable populations, and prioritizing monitoring and management. Yet the observational data these models rely on are influenced significantly by how, where, and when we sample, as well as by the biology we seek to measure, so spatial, temporal, taxonomic, detection, and protocol biases systematically distort our picture of biodiversity. We argue that these seemingly distinct biases reflect a single underlying problem: the entanglement of the observation process with the ecological process. Because the observed pattern reflects both ecological (e.g., species occurrence or abundance) and observation processes (e.g., where, when, and how organisms are sampled), debiasing fundamentally means disentangling ecological signal from sampling artifacts. This task can be well addressed by deep learning approaches because they can learn the relationship between the two processes directly from data. We organize deep learning methods into a small set of recurring mechanisms that operate at two levels: model-level mechanisms that separate the observation and ecological processes within the model, and data-level mechanisms that reduce sampling bias in the data itself. This mechanism-based framework is broadly applicable across taxa and ecosystems. We further argue that the primary barrier to progress is not increasingly sophisticated architectures but rigorous evaluation. Conventional random hold-out evaluation often rewards models for reproducing sampling artifacts rather than recovering ecological patterns, so models should instead be tested on hold-outs separated from the training data in space or time. Finally, we outline priorities for the next generation of biodiversity artificial intelligence (AI) to guide the development of reliable and transferable predictive models for biodiversity monitoring and conservation.",
+      stats: [["5", "Sampling biases traced to one cause"], ["2", "Levels of mechanisms: model & data"], ["Space & time", "Blocked hold-outs for evaluation"]],
+      tags: ["Sampling bias", "Observation models", "Deep learning", "Evaluation", "Biodiversity monitoring"],
+      caption: "Observed biodiversity data are the joint product of the ecological process (E: true occurrence, abundance, interactions and responses to drivers) and the observation process (O: where, when, which species, whether and how we observe). Spatial, temporal, taxonomic, detection and protocol biases distort the observed data and can be mistaken for ecological patterns.",
+      links: { "Paper →": "#" } },
+    { cover: "images/figures/cobia-swim-speed-cover.jpg", coverFig: true, img: "images/figures/cobia-swim-speed.png", badge: "Telemetry", category: "Modeling",
+      title: "Predicting fish swimming speed to improve satellite telemetry geolocation",
+      subtitle: "Cobia (<em>Rachycentron canadum</em>) · Gulf of America · acoustic & PSAT telemetry",
+      summary: "Satellite tag geolocation assumes one constant swimming speed. Correcting acoustic-telemetry speeds and predicting them by season and place gives cobia tracks an 18% tighter search area.",
+      text: "Accurate tracking of highly migratory fish is essential for managing Gulf of America fisheries under a changing climate. Pop-up satellite archival (PSAT) tags record light, sea surface temperature and depth, and the widely used GPE3 geolocation model reconstructs tracks from these data. GPE3, however, constrains each track with a single constant swimming speed, typically a 2.0 m/s default applied regardless of season, location or behavior. Where fish actually swim slower, this inflates position uncertainty; where they swim faster during migration, tracks can be biased. Here we produce the first spatially and seasonally variable swimming-speed predictions for cobia (<em>Rachycentron canadum</em>) in the Gulf. First, we recover true swimming speeds from acoustic-telemetry displacement rates using a Markov random-walk trajectory imputation that accounts for path tortuosity and an exponential decay model that separates active swimming from resting-time dilution. Second, using these corrected speeds, we compare a four-state Dynamic Bayesian Network (resident, searching, transit and migration) with a Graph Attention Network that treats the acoustic receiver array as a spatial graph. Using detections of 350 cobia at 390 receivers (2014–2022) and 62 Bio-ORACLE environmental covariates, we predict swimming speed by location and season across the Gulf, including areas beyond the receiver network. Validated against 36 PSAT-tagged cobia, our variable speed estimates (mean 1.64 m/s) produce an 18% tighter diffusion kernel than the 2.0 m/s default while maintaining 99.5% position reachability, improving the precision of satellite-based geolocation for fisheries monitoring.",
+      stats: [["350", "Tagged cobia, 390 receivers (2014–2022)"], ["1.64 m/s", "Mean predicted speed vs. 2.0 m/s default"], ["18%", "Tighter GPE3 diffusion kernel"], ["99.5%", "Position reachability (36 PSAT tags)"]],
+      tags: ["Acoustic telemetry", "PSAT / GPE3", "Dynamic Bayesian Network", "Graph Attention Network", "Movement ecology"],
+      caption: "Decay-corrected cobia swimming speeds from inter-station transitions longer than 100 m: overall distribution (median 3.31 m/s, mean 3.45 m/s), distributions and box plots by season and life stage, median speed by season × life stage, violin plots, and summary statistics.",
+      links: { "Paper →": "#" } },
+    { cover: "images/figures/disease-staged-model.png", coverFig: true, img: "images/figures/disease-staged-model.png", badge: "Disease ecology", category: "Modeling",
+      title: "Linking water, bird migration and agriculture to mosquito-borne disease risk",
+      subtitle: "A staged scenario model from water to mosquito and human infection",
+      summary: "A staged model that follows water, bird migration and agricultural practice through to mosquito and human infection rates, compared across scenarios of environmental variability and farming practice.",
+      textLabel: "Project overview",
+      text: "Mosquito-borne diseases emerge where water, wildlife and people meet. In agricultural landscapes, the timing and extent of surface water from wetland flooding, irrigation and crop practices shape where migratory and resident birds gather. Those birds, in turn, influence mosquito breeding, pathogen amplification in bird hosts, and ultimately spillover to people. This project builds a staged modeling framework that follows that chain. Stage 1 models water availability from hydrology and agricultural practice. Stage 2 links water and habitat to bird migration and host abundance. Stage 3 predicts mosquito abundance and infection rates from habitat and host conditions. Stage 4 translates mosquito infection into human infection rates. Each stage passes its predictions, with their uncertainty, to the next. The framework is run under scenarios that combine environmental variability (wet and dry years, and climate change) with alternative agricultural practices such as changes in irrigation, field flooding and land use. The goal is to identify which combinations raise or lower mosquito and human infection risk, and where water and land management could reduce disease risk while supporting agriculture and wildlife.",
+      stats: [["4", "Linked modeling stages"], ["2", "Outcomes: mosquito & human infection rates"], ["Scenarios", "Environmental variability × agricultural practice"]],
+      tags: ["Disease ecology", "One Health", "Bird migration", "Water management", "Scenario modeling"],
+      caption: "Schematic of the staged framework: water and agriculture drive bird migration, which shapes mosquito infection and then human infection, evaluated across scenarios of environmental variability and agricultural practice.",
+      links: { "Read more →": "#" } },
   ],
 
   // img = small thumbnail in the list; full = the complete figure shown when clicked
@@ -353,18 +522,6 @@ const SITE = {
       authors: "X Li, S Chen, L Li, X Quan, H Zhao", venue: "Journal of Colloid and Interface Science 415, 159–164", cites: 40 },
     { year: 2013, type: "journal", title: "Carbon dioxide emission drivers for a typical metropolis using input–output structural decomposition analysis",
       authors: "Y Wang, H Zhao, L Li, Z Liu, S Liang", venue: "Energy Policy 58, 312–318", cites: 226 },
-  ],
-
-  workingGroups: [
-    { banner: "images/photos/fish-school.jpg", role: "Role", status: "Active", title: "✏️ Working Group Name",
-      meta: "NCEAS · Year – present",
-      text: "The group's synthesis question, what data it brings together, and your part in it.",
-      link: ["Group website →", "#"],
-      photos: ["images/photos/cobia.jpg", "images/photos/red-drum.jpg", "images/figures/genetic-diversity-exposure-thumb.jpg"] },
-    { banner: "images/photos/pelicans.jpg", role: "Role", status: "Active", title: "✏️ Working Group Name",
-      meta: "Host · Year – present",
-      text: "Description and your contribution.",
-      link: ["GitHub organization →", "#"], photos: ["images/photos/egret.jpg", "images/photos/gull.jpg"] },
   ],
 
   contact: {
@@ -415,28 +572,61 @@ function renderAbout() {
 function renderResearch() {
   const r = SITE.research;
   $("#tab-research").innerHTML = `<h2>Research</h2><p class="lead">${r.intro}</p>
+    <div class="theme-nav">${r.themes.map((t, i) => `<button data-go="theme-${i}"><span>${String(i + 1).padStart(2, "0")}</span>${t.short}</button>`).join("")}</div>
     <div>${r.themes.map((t, i) => `
-      <div class="theme ${i % 2 ? "flip" : ""}">
+      <div class="theme ${i % 2 ? "flip" : ""}" id="theme-${i}">
         <div class="theme-media">${pic(t.img, t.title, "main", "research")}${t.inset ? pic(t.inset, t.title, "inset", "research") : ""}</div>
-        <div><div class="num">${String(i + 1).padStart(2, "0")}</div><h3 style="font-size:1.6rem">${t.title}</h3><p>${t.text}</p>${t.tags.map(x => `<span class="tag">${x}</span>`).join("")}</div>
+        <div><div class="num">${String(i + 1).padStart(2, "0")}</div><h3 class="theme-title">${t.title}</h3><p>${t.summary}</p>${t.tags.map(x => `<span class="tag">${x}</span>`).join("")}</div>
+      </div>
+      <div class="card theme-detail">
+        <div class="kicker">Approach</div>
+        <div class="points">${t.points.map(pt => `<div><h4>${pt.h}</h4><p>${pt.text}</p></div>`).join("")}</div>
+        ${t.closing ? `<p class="closing">${t.closing}</p>` : ""}
       </div>
       ${t.figure ? `<figure class="card figure">${pic(t.figure.img, t.figure.caption, "", "research")}<figcaption>${t.figure.caption}</figcaption></figure>` : ""}`).join("")}</div>`;
+  document.querySelectorAll(".theme-nav button").forEach(b => b.onclick = () =>
+    document.getElementById(b.dataset.go).scrollIntoView({ behavior: "smooth", block: "start" }));
 }
 
 function renderProjects() {
   const ps = SITE.projects, cats = ["All", ...new Set(ps.map(p => p.category))];
-  $("#tab-projects").innerHTML = `<h2>Projects</h2><p class="lead">Field campaigns, software, datasets, and outreach.</p>
+  $("#tab-projects").innerHTML = `<h2>Projects</h2><p class="lead">Click a project to read more and see the figures.</p>
     <div class="filters">${cats.map((c, i) => `<button class="chip ${i ? "" : "on"}" data-cat="${c}">${c}</button>`).join("")}</div>
-    <div class="projects">${ps.map(p => `
-      <article class="card project ${p.featured ? "featured" : ""}" data-cat="${p.category}">
-        <div class="ph" style="position:relative">${p.badge ? `<span class="badge">${p.badge}</span>` : ""}<img src="${p.img}" alt="${p.title}" loading="lazy" data-zoom data-group="projects" data-caption="${p.title}" onerror="this.remove()"></div>
-        <div class="body"><h3>${p.title}</h3><p class="meta">${p.text}</p><div class="links">${links(p.links)}</div></div>
+    <div class="projects">${ps.map((p, i) => `
+      <article class="card project" data-cat="${p.category}" ${p.summary ? `data-open="${i}" tabindex="0" role="button"` : ""}>
+        <div class="ph ${p.coverFig ? "cover-fig" : ""}">${p.badge ? `<span class="badge">${p.badge}</span>` : ""}<img src="${p.cover || p.img}" alt="${p.title}" loading="lazy" onerror="this.remove()"></div>
+        <div class="body"><h3>${p.title}</h3><p class="meta">${p.summary || p.text}</p>
+          <div class="links">${p.summary ? `<span class="more">Read ${p.textLabel ? "overview" : "abstract"} →</span>` : links(p.links)}</div></div>
       </article>`).join("")}</div>`;
   document.querySelectorAll("#tab-projects .chip").forEach(c => c.onclick = () => {
     document.querySelectorAll("#tab-projects .chip").forEach(x => x.classList.toggle("on", x === c));
     document.querySelectorAll(".project").forEach(p => p.style.display = c.dataset.cat === "All" || p.dataset.cat === c.dataset.cat ? "" : "none");
   });
+  document.querySelectorAll(".project[data-open]").forEach(card => {
+    const open = () => openProject(SITE.projects[card.dataset.open]);
+    card.onclick = open;
+    card.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } };
+  });
 }
+
+function openProject(p) {
+  const m = $("#modal");
+  m.querySelector(".modal-body").innerHTML = `
+    ${p.img ? `<div class="modal-fig"><img src="${p.img}" alt="${p.title}" data-zoom data-group="modal" data-caption="${p.caption || p.title}"></div>` : ""}
+    <div class="modal-text">
+      ${p.badge ? `<div class="kicker">${p.badge}</div>` : ""}
+      <h2>${p.title}</h2>${p.subtitle ? `<div class="subtitle">${p.subtitle}</div>` : ""}
+      ${p.stats ? `<div class="stats">${p.stats.map(([v, l]) => `<div><b>${v}</b><span>${l}</span></div>`).join("")}</div>` : ""}
+      <h4>${p.textLabel || "Abstract"}</h4><p class="abstract">${p.text}</p>
+      ${p.tags ? `<div>${p.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>` : ""}
+      ${p.caption ? `<p class="meta fig-cap">Figure: ${p.caption}</p>` : ""}
+      ${p.extra ? `<div class="extra">${p.extra.map(x => `<div class="ph"><img src="${x.thumb || x.img}" alt="${x.caption}" data-zoom data-group="modal" data-caption="${x.caption}" data-full="${x.img}" onerror="this.remove()"></div>`).join("")}<span class="meta">More figures — click to enlarge</span></div>` : ""}
+      <div class="links">${links(p.links)}</div>
+    </div>`;
+  m.classList.add("open"); document.body.style.overflow = "hidden";
+  m.querySelector(".modal-panel").scrollTop = 0; m.querySelector(".modal-close").focus();
+}
+function closeProject() { $("#modal").classList.remove("open"); document.body.style.overflow = ""; }
 
 function renderPublications() {
   $("#tab-publications").innerHTML = `<h2>Publications</h2>
@@ -465,19 +655,6 @@ function renderPublications() {
   draw();
 }
 
-function renderGroups() {
-  $("#tab-working-groups").innerHTML = `<h2>Working Groups</h2><p class="lead">Collaborative synthesis teams I lead or participate in.</p>
-    ${SITE.workingGroups.map((w, i) => `
-      <article class="card wg">
-        <div class="ph banner"><img src="${w.banner}" alt="${w.title}" loading="lazy" data-zoom data-group="wg${i}" data-caption="${w.title}" onerror="this.remove()">
-          <div class="banner-text"><div><div class="role">${w.role}</div><h3>${w.title}</h3></div><span class="status ${w.status === "Active" ? "" : "done"}">${w.status}</span></div></div>
-        <div class="body">
-          <div><p class="meta">${w.meta}</p><p>${w.text}</p><a href="${w.link[1]}">${w.link[0]}</a></div>
-          <div class="strip">${(w.photos || []).map(p => pic(p, w.title, "", "wg" + i)).join("")}</div>
-        </div>
-      </article>`).join("")}`;
-}
-
 function renderContact() {
   const c = SITE.contact;
   $("#tab-contact").innerHTML = `<h2>Contact</h2><p class="lead">Always happy to chat about collaborations, data, or mentorship. Email is the best way to reach me.</p>
@@ -496,7 +673,7 @@ function renderContact() {
     </div>`;
 }
 
-renderAbout(); renderResearch(); renderProjects(); renderPublications(); renderGroups(); renderContact();
+renderAbout(); renderResearch(); renderProjects(); renderPublications(); renderContact();
 document.title = `${SITE.name} · ${SITE.title}`;
 $("#brand").textContent = SITE.name;
 $("#yr").textContent = new Date().getFullYear();
@@ -519,7 +696,8 @@ let set = [], idx = 0;
 const show = () => { lbImg.src = set[idx].dataset.full || set[idx].src; lbCap.textContent = set[idx].dataset.caption || ""; lb.querySelector(".prev").style.display = lb.querySelector(".next").style.display = set.length > 1 ? "" : "none"; };
 document.addEventListener("click", e => {
   const im = e.target.closest("img[data-zoom]"); if (!im) return;
-  set = [...document.querySelectorAll(`main > section.active img[data-zoom][data-group="${im.dataset.group}"]`)];
+  const scope = im.closest(".modal") || document.querySelector("main > section.active");
+  set = [...scope.querySelectorAll(`img[data-zoom][data-group="${im.dataset.group}"]`)];
   idx = Math.max(0, set.indexOf(im)); show(); lb.classList.add("open");
 });
 const step = d => { idx = (idx + d + set.length) % set.length; show(); };
@@ -527,6 +705,9 @@ lb.querySelector(".x").onclick = () => lb.classList.remove("open");
 lb.querySelector(".prev").onclick = () => step(-1);
 lb.querySelector(".next").onclick = () => step(1);
 lb.onclick = e => { if (e.target === lb) lb.classList.remove("open"); };
+$("#modal .modal-close").onclick = closeProject;
+$("#modal").addEventListener("click", e => { if (e.target.id === "modal") closeProject(); });
+addEventListener("keydown", e => { if (e.key === "Escape" && !lb.classList.contains("open") && $("#modal").classList.contains("open")) closeProject(); });
 addEventListener("keydown", e => {
   if (!lb.classList.contains("open")) return;
   if (e.key === "Escape") lb.classList.remove("open");

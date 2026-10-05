@@ -1,6 +1,6 @@
 # Personal Academic Website (photo edition)
 
-A single-page site with About, Research, Projects, Publications, Working Groups, and Contact tabs. It's built around pictures: a hero banner, a field photo gallery, photo cards, figure thumbnails for papers, banners for working groups, and a full-screen viewer with captions for every image.
+A single-page site with About, Research, Projects, Publications, and Contact tabs. It's built around pictures: a hero banner, a field photo gallery, photo cards, figure thumbnails for papers, and a full-screen viewer with captions for every image.
 
 ## Deploy on GitHub Pages
 
@@ -15,7 +15,7 @@ All content lives in **one place**: the `SITE` object near the bottom of `index.
 
 - **Swap a photo:** put your picture in `images/` with the same file name (e.g. `images/hero.jpg`), or change the path in `SITE`.
 - **Add gallery photos:** add a line like `{ img: "images/gallery/my-photo.jpg", caption: "..." }`. Tall, wide, or square photos all fit.
-- **Add a project, paper, or working group:** copy an existing entry and edit it. `featured: true` makes a project span the full width.
+- **Add a project or paper:** copy an existing entry and edit it. For projects, `cover` is the card photo; `img`, `text` (abstract), `stats`, `tags` and `links` appear in the pop-up when the card is clicked.
 - **Photos for papers:** a figure or graphical abstract works well. Leave out `img` and the entry shows as text only.
 - **Missing images** are skipped automatically, so nothing breaks while you're filling things in.
 
