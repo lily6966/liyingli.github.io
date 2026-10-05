@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name · Researcher</title>
+<meta name="description" content="Personal academic website of Your Name — research, projects, publications, and working groups.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ================= THEME — change --accent to restyle everything ================= */
+  :root {
+    --bg: #f4f7f9; --surface: #ffffff; --text: #14283a; --muted: #56697a;
+    --line: #dde5ec; --accent: #1b6a96; --accent-soft: #e1eef6;
+    --shadow: 0 1px 2px rgba(31,42,36,.05), 0 10px 30px rgba(31,42,36,.08);
+    --radius: 16px; --max: 1120px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d1620; --surface: #15222f; --text: #e4edf4; --muted: #94a8b8;
+      --line: #24384a; --accent: #6cbbe6; --accent-soft: #17344a;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0d1620; --surface: #15222f; --text: #e4edf4; --muted: #94a8b8;
+    --line: #24384a; --accent: #6cbbe6; --accent-soft: #17344a;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.3);
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.65 "Inter", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 600; line-height: 1.2; margin: 0 0 .5em; }
+  h2 { font-size: 2.1rem; }
+  h3 { font-size: 1.2rem; }
+  p { margin: 0 0 1em; }
+  img { display: block; max-width: 100%; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding-left: 20px; padding-right: 20px; }
+  .lead { color: var(--muted); font-size: 1.08rem; max-width: 680px; margin-bottom: 36px; }
+  .meta { color: var(--muted); font-size: .88rem; }
+  .tag { display: inline-block; font-size: .75rem; font-weight: 500; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); margin: 0 6px 6px 0; }
+  .kicker { font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+
+  /* Every photo sits in a .ph frame; a soft gradient shows while it loads or if the file is missing */
+  .ph { position: relative; overflow: hidden; background: linear-gradient(135deg, var(--accent-soft), color-mix(in srgb, var(--accent) 30%, var(--accent-soft))); }
+  .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+  [data-zoom] { cursor: zoom-in; }
+
+  /* ================= NAV ================= */
+  header.top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .nav { display: flex; align-items: center; gap: 16px; height: 64px; }
+  .brand { font-family: "Fraunces", serif; font-size: 1.2rem; font-weight: 600; color: var(--text); white-space: nowrap; }
+  .brand:hover { text-decoration: none; }
+  .tabs { display: flex; gap: 4px; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tabs a { padding: 8px 12px; border-radius: 999px; color: var(--muted); font-size: .92rem; font-weight: 500; white-space: nowrap; transition: .15s; }
+  .tabs a:hover { color: var(--text); background: var(--accent-soft); text-decoration: none; }
+  .tabs a.active { color: var(--accent); background: var(--accent-soft); }
+  .theme-btn { border: 1px solid var(--line); background: var(--surface); color: var(--text); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; flex-shrink: 0; display: grid; place-items: center; }
+  @media (max-width: 760px) {
+    .nav { flex-wrap: wrap; height: auto; padding-top: 12px; padding-bottom: 8px; }
+    .tabs { order: 3; width: 100%; margin-left: 0; }
+    .theme-btn { margin-left: auto; }
+  }
+
+  main { padding-top: 32px; padding-bottom: 80px; min-height: 70vh; }
+  main > section { display: none; animation: fade .4s ease; }
+  main > section.active { display: block; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .block { margin-top: 64px; }
+  .block-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 20px; }
+  .block-head h2 { margin: 0; font-size: 1.6rem; }
+
+  /* ================= ABOUT ================= */
+  .hero { height: min(62vh, 560px); min-height: 340px; border-radius: 22px; box-shadow: var(--shadow); }
+  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,.6)); pointer-events: none; }
+  .hero-text { position: absolute; left: 0; right: 0; bottom: 0; padding: 36px 40px 36px 328px; color: #fff; z-index: 1; }
+  .hero-text h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin: 0 0 6px; text-shadow: 0 2px 20px rgba(0,0,0,.3); }
+  .hero-text p { margin: 0; opacity: .92; font-size: 1.05rem; }
+  .hero-caption { position: absolute; top: 16px; right: 16px; z-index: 1; font-size: .75rem; color: #fff; background: rgba(0,0,0,.35); padding: 4px 10px; border-radius: 999px; backdrop-filter: blur(4px); }
+
+  .intro { display: grid; grid-template-columns: 240px 1fr; gap: 48px; margin-top: -70px; position: relative; z-index: 2; padding: 0 40px; }
+  .avatar { width: 200px; height: 200px; border-radius: 50%; border: 6px solid var(--bg); box-shadow: var(--shadow); }
+  .profile-meta { margin-top: 16px; }
+  .profile-meta strong { display: block; font-family: "Fraunces", serif; font-size: 1.25rem; font-weight: 600; }
+  .socials { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  .socials a { font-size: .8rem; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--text); background: var(--surface); }
+  .socials a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .bio { padding-top: 90px; font-size: 1.05rem; }
+  .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; }
+  .facts .card { padding: 20px 22px; }
+  .facts ul { margin: 0; padding-left: 18px; }
+
+  /* Masonry photo gallery */
+  .gallery { columns: 3 260px; column-gap: 14px; }
+  .gallery figure { margin: 0 0 14px; break-inside: avoid; border-radius: 14px; overflow: hidden; position: relative; box-shadow: var(--shadow); }
+  .gallery figure:hover img { transform: scale(1.04); }
+  .gallery figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 28px 14px 12px; color: #fff; font-size: .85rem; background: linear-gradient(transparent, rgba(0,0,0,.6)); opacity: 0; transition: .25s; }
+  .gallery figure:hover figcaption { opacity: 1; }
+  @media (hover: none) { .gallery figcaption { opacity: 1; } }
+
+  /* News cards */
+  .news { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+  .news .ph { aspect-ratio: 16/10; }
+  .news .body { padding: 18px 20px 22px; }
+  .news .card:hover img { transform: scale(1.04); }
+
+  @media (max-width: 820px) {
+    .intro { grid-template-columns: 1fr; gap: 0; padding: 0 12px; margin-top: -60px; }
+    .avatar { width: 140px; height: 140px; }
+    .bio { padding-top: 20px; }
+    .facts { grid-template-columns: 1fr; }
+    .hero-text { padding: 24px 24px 76px; }
+  }
+
+  /* ================= RESEARCH (zig-zag photo rows) ================= */
+  .theme { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; margin-bottom: 72px; }
+  .theme.flip .theme-media { order: 2; }
+  .theme-media { position: relative; }
+  .theme-media .main { aspect-ratio: 4/3; border-radius: 20px; box-shadow: var(--shadow); }
+  .theme-media .inset { position: absolute; width: 38%; aspect-ratio: 1; right: -18px; bottom: -24px; border-radius: 16px; border: 5px solid var(--bg); box-shadow: var(--shadow); }
+  .theme.flip .inset { right: auto; left: -18px; }
+  .theme .num { font-family: "Fraunces", serif; font-size: 3rem; color: var(--accent); line-height: 1; opacity: .5; }
+  .theme-media:hover .main img { transform: scale(1.03); }
+  @media (max-width: 820px) {
+    .theme { grid-template-columns: 1fr; gap: 28px; }
+    .theme.flip .theme-media { order: 0; }
+    .theme-media .inset { right: 10px; } .theme.flip .inset { left: 10px; }
+  }
+
+  .figure { margin: -24px 0 80px; padding: 20px; }
+  .figure .ph { background: #fff; border-radius: 10px; }
+  .figure .ph img { object-fit: contain; height: auto; max-height: 760px; margin: 0 auto; width: auto; max-width: 100%; }
+  .figure figcaption { font-size: .88rem; color: var(--muted); margin-top: 12px; }
+  .figure figcaption b { color: var(--text); }
+  .pub .ph.fig { background: #fff; }
+
+  /* ================= PROJECTS ================= */
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+  .chip { padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); cursor: pointer; font: inherit; font-size: .88rem; }
+  .chip.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+  .project { display: flex; flex-direction: column; transition: transform .25s; }
+  .project:hover { transform: translateY(-4px); }
+  .project:hover .ph img { transform: scale(1.05); }
+  .project .ph { aspect-ratio: 16/10; }
+  .project .body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1; }
+  .project .links { margin-top: auto; padding-top: 14px; display: flex; gap: 16px; font-size: .9rem; font-weight: 500; }
+  .project .badge { position: absolute; top: 12px; left: 12px; z-index: 1; background: rgba(255,255,255,.92); color: #1f2a24; font-size: .72rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; }
+  .project.featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1.3fr 1fr; }
+  .project.featured .ph { aspect-ratio: auto; min-height: 340px; }
+  .project.featured .body { padding: 36px; justify-content: center; }
+  .project.featured h3 { font-size: 1.7rem; }
+  .project.featured .links { margin-top: 8px; }
+  @media (max-width: 820px) { .project.featured { grid-template-columns: 1fr; } .project.featured .ph { min-height: 220px; } }
+
+  /* ================= PUBLICATIONS ================= */
+  .pub-tools { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+  .pub-tools input { flex: 1; min-width: 200px; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--text); font: inherit; }
+  .year { font-family: "Fraunces", serif; font-size: 1.4rem; color: var(--muted); margin: 32px 0 10px; }
+  .pub { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 18px; margin-bottom: 12px; align-items: start; }
+  .pub .ph { aspect-ratio: 1; border-radius: 10px; }
+  .pub .ph:hover img { transform: scale(1.06); }
+  .pub-title { font-weight: 600; font-size: 1.02rem; line-height: 1.4; margin-bottom: 4px; }
+  .pub .me { font-weight: 600; color: var(--text); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+  .pub .links { margin-top: 6px; }
+  .pub .links a { font-size: .8rem; font-weight: 500; margin-right: 10px; padding: 3px 10px; border: 1px solid var(--line); border-radius: 999px; }
+  .pub .links a:hover { border-color: var(--accent); text-decoration: none; }
+  .pub.no-img { grid-template-columns: 1fr; }
+  @media (max-width: 600px) { .pub { grid-template-columns: 80px 1fr; gap: 14px; padding: 14px; } }
+
+  /* ================= WORKING GROUPS ================= */
+  .wg { margin-bottom: 32px; }
+  .wg .banner { aspect-ratio: 21/8; }
+  .wg .banner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,.55)); }
+  .wg .banner-text { position: absolute; left: 28px; right: 28px; bottom: 22px; z-index: 1; color: #fff; display: flex; justify-content: space-between; align-items: end; gap: 12px; }
+  .wg .banner-text h3 { font-size: 1.7rem; margin: 0; }
+  .wg .role { font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .9; }
+  .status { font-size: .75rem; font-weight: 600; padding: 4px 12px; border-radius: 999px; background: rgba(255,255,255,.92); color: #1f2a24; white-space: nowrap; }
+  .status.done { background: rgba(0,0,0,.45); color: #fff; }
+  .wg .body { padding: 22px 28px 26px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start; }
+  .strip { display: flex; gap: 8px; }
+  .strip .ph { width: 86px; height: 86px; border-radius: 10px; }
+  .strip .ph:hover img { transform: scale(1.08); }
+  @media (max-width: 760px) { .wg .banner { aspect-ratio: 16/9; } .wg .body { grid-template-columns: 1fr; } .wg .banner-text h3 { font-size: 1.3rem; } }
+
+  /* ================= CONTACT ================= */
+  .contact { display: grid; grid-template-columns: 1fr 1fr; }
+  .contact .ph { min-height: 100%; }
+  .contact .body { padding: 36px; }
+  .contact dt { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: 18px; }
+  .contact dd { margin: 2px 0 0; }
+  form label { display: block; font-size: .85rem; font-weight: 500; margin: 12px 0 4px; }
+  form input, form textarea { width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--text); font: inherit; }
+  form textarea { min-height: 110px; resize: vertical; }
+  .btn { margin-top: 16px; padding: 10px 22px; border: 0; border-radius: 999px; background: var(--accent); color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+  @media (max-width: 820px) { .contact { grid-template-columns: 1fr; } .contact .ph { min-height: 240px; } .contact .body { padding: 24px; } }
+
+  /* ================= LIGHTBOX ================= */
+  .lb { position: fixed; inset: 0; z-index: 100; background: rgba(8,12,10,.92); display: none; align-items: center; justify-content: center; flex-direction: column; padding: 24px; }
+  .lb.open { display: flex; }
+  .lb img { max-width: min(1200px, 92vw); max-height: 80vh; border-radius: 10px; object-fit: contain; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+  .lb p { color: #e6ebe7; margin: 14px 0 0; font-size: .95rem; text-align: center; max-width: 700px; }
+  .lb button { position: absolute; background: rgba(255,255,255,.12); color: #fff; border: 0; width: 46px; height: 46px; border-radius: 50%; font-size: 22px; cursor: pointer; }
+  .lb button:hover { background: rgba(255,255,255,.25); }
+  .lb .x { top: 18px; right: 18px; } .lb .prev { left: 18px; } .lb .next { right: 18px; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: .85rem; text-align: center; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap nav">
+    <a href="#about" class="brand" id="brand">Your Name</a>
+    <nav class="tabs" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
+      <a href="#publications">Publications</a>
+      <a href="#working-groups">Working Groups</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="tab-about"></section>
+  <section id="tab-research"></section>
+  <section id="tab-projects"></section>
+  <section id="tab-publications"></section>
+  <section id="tab-working-groups"></section>
+  <section id="tab-contact"></section>
+</main>
+
+<footer>© <span id="yr"></span> Your Name · Hosted on GitHub Pages</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true">
+  <button class="x" aria-label="Close">×</button>
+  <button class="prev" aria-label="Previous">‹</button>
+  <img alt="">
+  <p></p>
+  <button class="next" aria-label="Next">›</button>
+</div>
+
+<script>
+/* =====================================================================
+   ✏️  YOUR CONTENT — edit everything in this SITE object.
+   Pictures: drop files into the images/ folder and put the path here.
+   Any image can be clicked to open full-screen (with captions).
+   ===================================================================== */
+const SITE = {
+  name: "Liying Li",
+  title: "Researcher",
+  affiliation: "NCEAS · UC Santa Barbara",
+  tagline: "Coastal and marine ecology · population genetics · climate change · machine learning.",
+  email: "you@example.edu",
+  heroImage: "images/photos/fish-school.jpg",
+  heroCaption: "🐟 Schooling fish",
+  profileImage: "images/profile.jpg",
+  socials: { Email: "mailto:you@example.edu", Scholar: "https://scholar.google.com/", GitHub: "https://github.com/yourusername", ORCID: "https://orcid.org/", CV: "cv.pdf" },
+  bio: [
+    "I study <strong>coastal and marine ecosystems</strong>: how climate change exposes nearshore species, what that means for their genetic diversity, and how machine learning can make estuary monitoring data more useful.",
+    "✏️ Add a sentence about your background: your Ph.D., previous positions, and what you're working on now."
+  ],
+  interests: ["Population genetic diversity", "Climate exposure (CMIP6 / SSP scenarios)", "Graph neural networks for monitoring data", "Estuarine fisheries & coastal birds"],
+  education: ["Ph.D., Discipline — University, Year", "M.S., Discipline — University, Year", "B.S., Discipline — University, Year"],
+
+  // Photo gallery on the About page — add as many as you like
+  gallery: [
+    { img: "images/photos/fish-school.jpg", caption: "Schooling fish" },
+    { img: "images/photos/egret.jpg", caption: "Great egret taking off" },
+    { img: "images/photos/red-drum.jpg", caption: "Red drum over seagrass" },
+    { img: "images/photos/pelicans.jpg", caption: "Brown pelicans" },
+    { img: "images/photos/cobia.jpg", caption: "Cobia" },
+    { img: "images/photos/seatrout-zones.jpg", caption: "Spotted seatrout management zones, Florida" },
+    { img: "images/photos/gull.jpg", caption: "Gull overhead" },
+  ],
+
+  news: [
+    { date: "Month 2026", img: "images/figures/genetic-diversity-exposure-thumb.jpg", title: "New results on genetic diversity & climate exposure", text: "✏️ One line about the paper or talk." },
+    { date: "Month 2026", img: "images/figures/florida-gnn-network-thumb.jpg", title: "Florida estuary network model", text: "✏️ One line about this milestone." },
+    { date: "Month 2026", img: "images/photos/egret.jpg", title: "Field season", text: "✏️ One line about fieldwork, a meeting, or an award." },
+  ],
+
+  research: {
+    intro: "My work connects climate projections, population genetics, and long-term monitoring to understand which coastal populations are most at risk, and where to look.",
+    themes: [
+      { img: "images/photos/fish-school.jpg", inset: "images/photos/cobia.jpg", title: "Climate exposure & genetic diversity",
+        text: "Predicting genetic diversity (expected heterozygosity, He) along the California coast for nearshore species, including kelp, eelgrass, a goby, and a whelk, and pairing it with projected climate exposure under SSP5-8.5 across CMIP6 models. Placing populations on a diversity-by-exposure plane separates resilient from at-risk and critical ones.",
+        tags: ["Population genetics", "CMIP6", "Uncertainty"],
+        figure: { img: "images/figures/genetic-diversity-exposure.jpg",
+          caption: "<b>Predicted He along the California coast and Δ-climate exposure.</b> (a–d) Predicted He by latitude with 68%/95% CIs and observed populations; (e–f) change-based exposure components and spread across GCMs; (g) California populations against the global distribution." } },
+      { img: "images/photos/red-drum.jpg", inset: "images/photos/seatrout-zones.jpg", title: "Graph neural networks for estuary monitoring",
+        text: "Treating 596 fisheries monitoring stations across four Florida estuaries (Apalachicola Bay, Cedar Key, Tampa Bay, and Charlotte Harbor) as a graph. Each station is linked to its nearest neighbors within the same bay (1,811 edges), so a model can learn from nearby sites.",
+        tags: ["Graph neural networks", "Fisheries", "Florida"],
+        figure: { img: "images/figures/florida-gnn-network.jpg",
+          caption: "<b>The Florida sampling graph.</b> (a) All stations by bay; (b) one target station and its five k-NN neighbors in Charlotte Harbor; (c–f) within-bay networks for each estuary." } },
+      { img: "images/photos/pelicans.jpg", inset: "images/photos/egret.jpg", title: "Coastal birds & food webs",
+        text: "✏️ A third theme, or delete this block. For example: how seabirds and wading birds connect to the fish communities in these estuaries.",
+        tags: ["Seabirds", "Food webs"] },
+    ]
+  },
+
+  // featured: true makes a project span the full width with a big photo
+  projects: [
+    { img: "images/figures/florida-gnn-network-thumb.jpg", title: "Florida Estuary Graph Model", badge: "GNN", category: "Modeling", featured: true,
+      text: "A graph neural network built on 596 monitoring stations in four Florida bays.", links: { "Code →": "#", "Paper": "#" } },
+    { img: "images/figures/genetic-diversity-exposure-thumb.jpg", title: "Genetic Diversity × Climate Exposure", badge: "Synthesis", category: "Modeling",
+      text: "Predicted He for nearshore California species, compared against the global distribution.", links: { "Code →": "#" } },
+    { img: "images/photos/red-drum.jpg", title: "Estuarine Fish Communities", badge: "Fisheries", category: "Field",
+      text: "✏️ Describe the project.", links: { "Read more →": "#" } },
+    { img: "images/photos/cobia.jpg", title: "Project Name", badge: "Data", category: "Data",
+      text: "✏️ Describe the dataset or tool.", links: { "Dataset →": "#" } },
+    { img: "images/photos/egret.jpg", title: "Project Name", badge: "Birds", category: "Field",
+      text: "✏️ Describe the project.", links: { "Read more →": "#" } },
+  ],
+
+  // img = small thumbnail in the list; full = the complete figure shown when clicked
+  me: "Li L",   // how your name appears in author lists (gets highlighted)
+  publications: [
+    { year: 2026, type: "preprint", img: "images/figures/genetic-diversity-exposure-thumb.jpg", full: "images/figures/genetic-diversity-exposure.jpg",
+      title: "✏️ Paper title: genetic diversity and climate exposure of nearshore species",
+      authors: "Li L, Coauthor A, Coauthor B", venue: "Journal / preprint server", links: { PDF: "papers/li-2026-genetic-diversity.pdf", Code: "#" } },
+    { year: 2026, type: "preprint", img: "images/figures/florida-gnn-network-thumb.jpg", full: "images/figures/florida-gnn-network.jpg",
+      title: "✏️ Paper title: graph neural networks for Florida estuary monitoring",
+      authors: "Li L, Coauthor C", venue: "Journal / preprint server", links: { PDF: "#", Code: "#" } },
+    { year: 2025, type: "journal", title: "✏️ An earlier paper (no image is fine too)",
+      authors: "Coauthor D, Li L", venue: "Journal Name", links: { DOI: "#" } },
+  ],
+
+  workingGroups: [
+    { banner: "images/photos/fish-school.jpg", role: "Role", status: "Active", title: "✏️ Working Group Name",
+      meta: "NCEAS · Year – present",
+      text: "The group's synthesis question, what data it brings together, and your part in it.",
+      link: ["Group website →", "#"],
+      photos: ["images/photos/cobia.jpg", "images/photos/red-drum.jpg", "images/figures/genetic-diversity-exposure-thumb.jpg"] },
+    { banner: "images/photos/pelicans.jpg", role: "Role", status: "Active", title: "✏️ Working Group Name",
+      meta: "Host · Year – present",
+      text: "Description and your contribution.",
+      link: ["GitHub organization →", "#"], photos: ["images/photos/egret.jpg", "images/photos/gull.jpg"] },
+  ],
+
+  contact: {
+    img: "images/photos/gull.jpg",
+    office: "National Center for Ecological Analysis and Synthesis<br>✏️ Street address<br>Santa Barbara, CA",
+    elsewhere: { GitHub: "#", Bluesky: "#", LinkedIn: "#" },
+    formspreeId: "YOUR_FORM_ID"   // free form backend: sign up at formspree.io
+  }
+};
+
+/* ===================== Rendering — no need to edit below ===================== */
+const $ = s => document.querySelector(s);
+const pic = (src, alt = "", cls = "", group = "", caption = "", full = "") =>
+  `<div class="ph ${cls}"><img src="${src}" alt="${alt}" loading="lazy" data-zoom data-group="${group}" data-caption="${caption || alt}" ${full ? `data-full="${full}"` : ""} onerror="this.remove()"></div>`;
+const links = obj => Object.entries(obj || {}).map(([k, v]) => `<a href="${v}">${k}</a>`).join("");
+
+function renderAbout() {
+  const s = SITE;
+  $("#tab-about").innerHTML = `
+    <div class="ph hero"><img src="${s.heroImage}" alt="${s.heroCaption}" data-zoom data-group="hero" data-caption="${s.heroCaption}" onerror="this.remove()">
+      ${s.heroCaption ? `<span class="hero-caption">${s.heroCaption}</span>` : ""}
+      <div class="hero-text"><h1>${s.name}</h1><p>${s.tagline}</p></div>
+    </div>
+    <div class="intro">
+      <aside>
+        ${pic(s.profileImage, s.name, "avatar", "profile")}
+        <div class="profile-meta"><strong>${s.name}</strong><span class="meta">${s.title}<br>${s.affiliation}</span></div>
+        <div class="socials">${links(s.socials)}</div>
+      </aside>
+      <div class="bio">
+        ${s.bio.map(p => `<p>${p}</p>`).join("")}
+        <div class="facts">
+          <div class="card"><h3>Interests</h3><ul>${s.interests.map(i => `<li>${i}</li>`).join("")}</ul></div>
+          <div class="card"><h3>Education</h3><ul>${s.education.map(i => `<li>${i}</li>`).join("")}</ul></div>
+        </div>
+      </div>
+    </div>
+    <div class="block">
+      <div class="block-head"><div><div class="kicker">Photos</div><h2>In the field</h2></div><span class="meta">Click any photo to enlarge</span></div>
+      <div class="gallery">${s.gallery.map(g => `<figure><img src="${g.img}" alt="${g.caption}" loading="lazy" data-zoom data-group="gallery" data-caption="${g.caption}" onerror="this.parentElement.remove()"><figcaption>${g.caption}</figcaption></figure>`).join("")}</div>
+    </div>
+    <div class="block">
+      <div class="block-head"><div><div class="kicker">Updates</div><h2>News</h2></div></div>
+      <div class="news">${s.news.map(n => `<article class="card">${pic(n.img, n.title, "", "news")}<div class="body"><div class="meta">${n.date}</div><h3>${n.title}</h3><p class="meta" style="margin:0">${n.text}</p></div></article>`).join("")}</div>
+    </div>`;
+}
+
+function renderResearch() {
+  const r = SITE.research;
+  $("#tab-research").innerHTML = `<h2>Research</h2><p class="lead">${r.intro}</p>
+    <div>${r.themes.map((t, i) => `
+      <div class="theme ${i % 2 ? "flip" : ""}">
+        <div class="theme-media">${pic(t.img, t.title, "main", "research")}${t.inset ? pic(t.inset, t.title, "inset", "research") : ""}</div>
+        <div><div class="num">${String(i + 1).padStart(2, "0")}</div><h3 style="font-size:1.6rem">${t.title}</h3><p>${t.text}</p>${t.tags.map(x => `<span class="tag">${x}</span>`).join("")}</div>
+      </div>
+      ${t.figure ? `<figure class="card figure">${pic(t.figure.img, t.figure.caption, "", "research")}<figcaption>${t.figure.caption}</figcaption></figure>` : ""}`).join("")}</div>`;
+}
+
+function renderProjects() {
+  const ps = SITE.projects, cats = ["All", ...new Set(ps.map(p => p.category))];
+  $("#tab-projects").innerHTML = `<h2>Projects</h2><p class="lead">Field campaigns, software, datasets, and outreach.</p>
+    <div class="filters">${cats.map((c, i) => `<button class="chip ${i ? "" : "on"}" data-cat="${c}">${c}</button>`).join("")}</div>
+    <div class="projects">${ps.map(p => `
+      <article class="card project ${p.featured ? "featured" : ""}" data-cat="${p.category}">
+        <div class="ph" style="position:relative">${p.badge ? `<span class="badge">${p.badge}</span>` : ""}<img src="${p.img}" alt="${p.title}" loading="lazy" data-zoom data-group="projects" data-caption="${p.title}" onerror="this.remove()"></div>
+        <div class="body"><h3>${p.title}</h3><p class="meta">${p.text}</p><div class="links">${links(p.links)}</div></div>
+      </article>`).join("")}</div>`;
+  document.querySelectorAll("#tab-projects .chip").forEach(c => c.onclick = () => {
+    document.querySelectorAll("#tab-projects .chip").forEach(x => x.classList.toggle("on", x === c));
+    document.querySelectorAll(".project").forEach(p => p.style.display = c.dataset.cat === "All" || p.dataset.cat === c.dataset.cat ? "" : "none");
+  });
+}
+
+function renderPublications() {
+  $("#tab-publications").innerHTML = `<h2>Publications</h2>
+    <p class="lead">Full list on <a href="${SITE.socials.Scholar}">Google Scholar</a>. Click a figure to enlarge.</p>
+    <div class="pub-tools"><input id="pubSearch" type="search" placeholder="Search title, author, journal…">
+      ${["all", "journal", "preprint", "data"].map((t, i) => `<button class="chip ${i ? "" : "on"}" data-type="${t}">${t[0].toUpperCase() + t.slice(1)}</button>`).join("")}</div>
+    <div id="pubList"></div>`;
+  let filter = "all";
+  const draw = () => {
+    const q = $("#pubSearch").value.toLowerCase();
+    const shown = SITE.publications.filter(p => (filter === "all" || p.type === filter) && [p.title, p.authors, p.venue].join(" ").toLowerCase().includes(q)).sort((a, b) => b.year - a.year);
+    let html = "", yr = null;
+    shown.forEach(p => {
+      if (p.year !== yr) { yr = p.year; html += `<div class="year">${yr}</div>`; }
+      html += `<div class="card pub ${p.img ? "" : "no-img"}">${p.img ? pic(p.img, p.title, "fig", "pubs", p.title, p.full) : ""}
+        <div><div class="pub-title">${p.title}</div><div class="meta">${p.authors.replace(SITE.me, `<span class="me">${SITE.me}</span>`)}</div>
+        <div class="meta"><em>${p.venue}</em> <span class="tag" style="margin-left:6px">${p.type}</span></div><div class="links">${links(p.links)}</div></div></div>`;
+    });
+    $("#pubList").innerHTML = html || `<p class="meta">No matches.</p>`;
+  };
+  $("#pubSearch").oninput = draw;
+  document.querySelectorAll("#tab-publications .chip").forEach(c => c.onclick = () => {
+    document.querySelectorAll("#tab-publications .chip").forEach(x => x.classList.toggle("on", x === c));
+    filter = c.dataset.type; draw();
+  });
+  draw();
+}
+
+function renderGroups() {
+  $("#tab-working-groups").innerHTML = `<h2>Working Groups</h2><p class="lead">Collaborative synthesis teams I lead or participate in.</p>
+    ${SITE.workingGroups.map((w, i) => `
+      <article class="card wg">
+        <div class="ph banner"><img src="${w.banner}" alt="${w.title}" loading="lazy" data-zoom data-group="wg${i}" data-caption="${w.title}" onerror="this.remove()">
+          <div class="banner-text"><div><div class="role">${w.role}</div><h3>${w.title}</h3></div><span class="status ${w.status === "Active" ? "" : "done"}">${w.status}</span></div></div>
+        <div class="body">
+          <div><p class="meta">${w.meta}</p><p>${w.text}</p><a href="${w.link[1]}">${w.link[0]}</a></div>
+          <div class="strip">${(w.photos || []).map(p => pic(p, w.title, "", "wg" + i)).join("")}</div>
+        </div>
+      </article>`).join("")}`;
+}
+
+function renderContact() {
+  const c = SITE.contact;
+  $("#tab-contact").innerHTML = `<h2>Contact</h2><p class="lead">Always happy to chat about collaborations, data, or mentorship. Email is the best way to reach me.</p>
+    <div class="card contact">${pic(c.img, "Contact", "", "contact")}
+      <div class="body"><dl>
+        <dt>Email</dt><dd><a href="mailto:${SITE.email}">${SITE.email}</a></dd>
+        <dt>Office</dt><dd>${c.office}</dd>
+        <dt>Elsewhere</dt><dd>${Object.entries(c.elsewhere).map(([k, v]) => `<a href="${v}">${k}</a>`).join(" · ")}</dd></dl>
+        <form action="https://formspree.io/f/${c.formspreeId}" method="POST">
+          <label for="n">Name</label><input id="n" name="name" required>
+          <label for="e">Email</label><input id="e" name="email" type="email" required>
+          <label for="m">Message</label><textarea id="m" name="message" required></textarea>
+          <button class="btn" type="submit">Send message</button>
+        </form>
+      </div>
+    </div>`;
+}
+
+renderAbout(); renderResearch(); renderProjects(); renderPublications(); renderGroups(); renderContact();
+document.title = `${SITE.name} · ${SITE.title}`;
+$("#brand").textContent = SITE.name;
+$("#yr").textContent = new Date().getFullYear();
+document.querySelector("footer").innerHTML = `© ${new Date().getFullYear()} ${SITE.name} · Text CC BY 4.0 · Code MIT · Photos © their respective owners · Hosted on GitHub Pages`;
+
+/* Tabs (hash-based, so yoursite/#publications links work) */
+function showTab() {
+  const id = (location.hash || "#about").slice(1);
+  const t = document.getElementById("tab-" + id) ? id : "about";
+  document.querySelectorAll("main > section").forEach(s => s.classList.toggle("active", s.id === "tab-" + t));
+  document.querySelectorAll(".tabs a").forEach(a => a.classList.toggle("active", a.hash === "#" + t));
+  window.scrollTo(0, 0);
+  document.querySelector(".tabs a.active")?.scrollIntoView({ inline: "center", block: "nearest" });
+}
+addEventListener("hashchange", showTab); showTab();
+
+/* Lightbox: click any photo; arrows/keys move within the same group */
+const lb = $("#lb"), lbImg = lb.querySelector("img"), lbCap = lb.querySelector("p");
+let set = [], idx = 0;
+const show = () => { lbImg.src = set[idx].dataset.full || set[idx].src; lbCap.textContent = set[idx].dataset.caption || ""; lb.querySelector(".prev").style.display = lb.querySelector(".next").style.display = set.length > 1 ? "" : "none"; };
+document.addEventListener("click", e => {
+  const im = e.target.closest("img[data-zoom]"); if (!im) return;
+  set = [...document.querySelectorAll(`main > section.active img[data-zoom][data-group="${im.dataset.group}"]`)];
+  idx = Math.max(0, set.indexOf(im)); show(); lb.classList.add("open");
+});
+const step = d => { idx = (idx + d + set.length) % set.length; show(); };
+lb.querySelector(".x").onclick = () => lb.classList.remove("open");
+lb.querySelector(".prev").onclick = () => step(-1);
+lb.querySelector(".next").onclick = () => step(1);
+lb.onclick = e => { if (e.target === lb) lb.classList.remove("open"); };
+addEventListener("keydown", e => {
+  if (!lb.classList.contains("open")) return;
+  if (e.key === "Escape") lb.classList.remove("open");
+  if (e.key === "ArrowLeft") step(-1);
+  if (e.key === "ArrowRight") step(1);
+});
+
+/* Dark-mode toggle */
+const root = document.documentElement;
+try { const t = localStorage.getItem("theme"); if (t) root.dataset.theme = t; } catch (e) {}
+$("#themeBtn").onclick = () => {
+  const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  root.dataset.theme = dark ? "light" : "dark";
+  try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
+};
+</script>
+</body>
+</html>
