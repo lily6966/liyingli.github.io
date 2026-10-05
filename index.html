@@ -283,9 +283,9 @@ const SITE = {
   ],
 
   news: [
-    { date: "Month 2026", img: "images/figures/genetic-diversity-exposure-thumb.jpg", title: "New results on genetic diversity & climate exposure", text: "✏️ One line about the paper or talk." },
-    { date: "Month 2026", img: "images/figures/florida-gnn-network-thumb.jpg", title: "Florida estuary network model", text: "✏️ One line about this milestone." },
-    { date: "Month 2026", img: "images/photos/egret.jpg", title: "Field season", text: "✏️ One line about fieldwork, a meeting, or an award." },
+    { date: "2026", img: "images/photos/red-drum.jpg", title: "New preprint on seagrass nekton", text: "Deep transfer learning reveals how fishery-important nekton use seagrass habitat across the Gulf of Mexico (bioRxiv)." },
+    { date: "2026", img: "images/photos/pelicans.jpg", title: "Hurricanes and bird displacement", text: "Our deep learning species distribution model paper is out in <em>Ecological Informatics</em>." },
+    { date: "2026", img: "images/photos/egret.jpg", title: "Birds' functional diversity", text: "New paper in <em>Ecological Indicators</em> on functional diversity loss under climate change." },
   ],
 
   research: {
@@ -322,16 +322,37 @@ const SITE = {
   ],
 
   // img = small thumbnail in the list; full = the complete figure shown when clicked
-  me: "Li L",   // how your name appears in author lists (gets highlighted)
+  me: "L Li",   // how your name appears in author lists (gets highlighted)
+  // type: journal | preprint | conference. Optional: img (thumbnail), full (figure shown on click),
+  // cites (citation count), links: { PDF: "papers/file.pdf", DOI: "https://doi.org/..." }
+  // A "Google Scholar" link is added automatically to every entry.
   publications: [
-    { year: 2026, type: "preprint", img: "images/figures/genetic-diversity-exposure-thumb.jpg", full: "images/figures/genetic-diversity-exposure.jpg",
-      title: "✏️ Paper title: genetic diversity and climate exposure of nearshore species",
-      authors: "Li L, Coauthor A, Coauthor B", venue: "Journal / preprint server", links: { PDF: "papers/li-2026-genetic-diversity.pdf", Code: "#" } },
-    { year: 2026, type: "preprint", img: "images/figures/florida-gnn-network-thumb.jpg", full: "images/figures/florida-gnn-network.jpg",
-      title: "✏️ Paper title: graph neural networks for Florida estuary monitoring",
-      authors: "Li L, Coauthor C", venue: "Journal / preprint server", links: { PDF: "#", Code: "#" } },
-    { year: 2025, type: "journal", title: "✏️ An earlier paper (no image is fine too)",
-      authors: "Coauthor D, Li L", venue: "Journal Name", links: { DOI: "#" } },
+    { year: 2026, type: "preprint", title: "Variation in seagrass habitat use by fishery-important nekton across the Gulf of Mexico revealed by deep transfer learning with trophic group priors",
+      authors: "L Li, J Rodemann, C Hayes, B Belgrad, KM Darnell, CW Martin, et al.", venue: "bioRxiv, 2026.05.26.727508" },
+    { year: 2026, type: "journal", title: "Hurricanes drive bird displacement revealed by deep learning species distribution models",
+      authors: "L Li, M Zuzuarregui, J Bai, S Sun, Y Chen, Z Wang", venue: "Ecological Informatics, 103785" },
+    { year: 2026, type: "journal", title: "The risk of birds' functional diversity loss with climate change uncovered using deep learning hurdle models",
+      authors: "L Li, J Bai, S Sun, MA Zuzuárregui, Z Wang", venue: "Ecological Indicators 190, 115321" },
+    { year: 2026, type: "journal", title: "Nature-based solutions to reduce carbon emissions, control groundwater overdraft, and conserve avian biodiversity with multi-benefit conservation planning",
+      authors: "L Li, E Hestir, JH Viers, JM Rodriguez-Flores, JT Abatzoglou, W Haw, et al.", venue: "Environmental and Sustainability Indicators, 101180", cites: 1 },
+    { year: 2026, type: "journal", title: "Ten simple rules for effective use of generative AI for code development in environmental science",
+      authors: "RA King, L Abowd, CW Broderick, LM Bradley, MF Czapanskiy, et al.", venue: "PLOS Computational Biology 22(8), e1014627" },
+    { year: 2025, type: "journal", title: "Optimized water allocation with managed groundwater recharge and prioritized wetland deliveries to moderate human-nature water use tradeoffs under climate change",
+      authors: "L Li, MS Dogan, M Maskey, JM Rodriguez-Flores, KB Vache, S Cole, et al.", venue: "Journal of Hydrology: Regional Studies 60, 102496", cites: 8 },
+    { year: 2025, type: "journal", title: "Synergies between agricultural production and shorebird conservation with climate change in the Central Valley, California, with optimized water allocation and multi-benefit conservation",
+      authors: "L Li, S Cole, JM Rodriguez-Flores, E Hestir, D Fink, JH Viers, et al.", venue: "Global Change Biology 31(6), e70304", cites: 8 },
+    { year: 2022, type: "journal", title: "Managing aquifer recharge to overcome overdraft in the Lower American River, California, USA",
+      authors: "ML Maskey, MS Dogan, AS Fernandez-Bou, L Li, A Guzman, W Arnold, et al.", venue: "Water 14(6), 966", cites: 21 },
+    { year: 2021, type: "journal", title: "Integrating climate change impact in new building design process: A review of building life cycle carbon emission assessment methodologies",
+      authors: "L Li", venue: "Cleaner Engineering and Technology 5, 100286", cites: 65 },
+    { year: 2021, type: "conference", title: "Assessing climate change impacts and adaptation options of rain-fed agriculture in Africa with integrated modelling framework",
+      authors: "L Li", venue: "Geo-Extreme 2021, 203–212", cites: 1 },
+    { year: 2020, type: "journal", title: "The governance of low-carbon transitions in a multilevel perspective framework: How does the concept of 'system transformation' work?",
+      authors: "L Li", venue: "Energy Research Journal", cites: 10, links: { DOI: "https://doi.org/10.3844/erjsp.2020.45.53" } },
+    { year: 2014, type: "journal", title: "Electrochemically enhanced adsorption of nonylphenol on carbon nanotubes: Kinetics and isotherms study",
+      authors: "X Li, S Chen, L Li, X Quan, H Zhao", venue: "Journal of Colloid and Interface Science 415, 159–164", cites: 40 },
+    { year: 2013, type: "journal", title: "Carbon dioxide emission drivers for a typical metropolis using input–output structural decomposition analysis",
+      authors: "Y Wang, H Zhao, L Li, Z Liu, S Liang", venue: "Energy Policy 58, 312–318", cites: 226 },
   ],
 
   workingGroups: [
@@ -419,9 +440,9 @@ function renderProjects() {
 
 function renderPublications() {
   $("#tab-publications").innerHTML = `<h2>Publications</h2>
-    <p class="lead">Full list on <a href="${SITE.socials.Scholar}">Google Scholar</a>. Click a figure to enlarge.</p>
+    <p class="lead">${SITE.publications.length} publications · full list on <a href="${SITE.socials.Scholar}">Google Scholar</a>.</p>
     <div class="pub-tools"><input id="pubSearch" type="search" placeholder="Search title, author, journal…">
-      ${["all", "journal", "preprint", "data"].map((t, i) => `<button class="chip ${i ? "" : "on"}" data-type="${t}">${t[0].toUpperCase() + t.slice(1)}</button>`).join("")}</div>
+      ${["all", ...["journal", "preprint", "conference", "data"].filter(t => SITE.publications.some(p => p.type === t))].map((t, i) => `<button class="chip ${i ? "" : "on"}" data-type="${t}">${t[0].toUpperCase() + t.slice(1)}</button>`).join("")}</div>
     <div id="pubList"></div>`;
   let filter = "all";
   const draw = () => {
@@ -431,8 +452,8 @@ function renderPublications() {
     shown.forEach(p => {
       if (p.year !== yr) { yr = p.year; html += `<div class="year">${yr}</div>`; }
       html += `<div class="card pub ${p.img ? "" : "no-img"}">${p.img ? pic(p.img, p.title, "fig", "pubs", p.title, p.full) : ""}
-        <div><div class="pub-title">${p.title}</div><div class="meta">${p.authors.replace(SITE.me, `<span class="me">${SITE.me}</span>`)}</div>
-        <div class="meta"><em>${p.venue}</em> <span class="tag" style="margin-left:6px">${p.type}</span></div><div class="links">${links(p.links)}</div></div></div>`;
+        <div><div class="pub-title">${p.title}</div><div class="meta">${p.authors.split(SITE.me).join(`<span class="me">${SITE.me}</span>`)}</div>
+        <div class="meta"><em>${p.venue}</em> <span class="tag" style="margin-left:6px">${p.type}</span>${p.cites ? `<span class="meta" style="margin-left:4px">Cited by ${p.cites}</span>` : ""}</div><div class="links">${links({ ...p.links, "Google Scholar": "https://scholar.google.com/scholar?q=" + encodeURIComponent('"' + p.title + '"') })}</div></div></div>`;
     });
     $("#pubList").innerHTML = html || `<p class="meta">No matches.</p>`;
   };
