@@ -322,11 +322,12 @@ const SITE = {
   title: "Researcher",
   affiliation: "NCEAS · UC Santa Barbara",
   tagline: "Coastal and marine ecology · population genetics · climate change · machine learning.",
-  email: "you@example.edu",
+  email: "liliying88@gmail.com",
+  phone: "(209) 828-1261",
   heroImage: "images/photos/fish-school.jpg",
   heroCaption: "🐟 Schooling fish",
   profileImage: "images/profile.jpg",
-  socials: { Email: "mailto:you@example.edu", Scholar: "https://scholar.google.com/", GitHub: "https://github.com/yourusername", ORCID: "https://orcid.org/", CV: "cv.pdf" },
+  socials: { Email: "mailto:liliying88@gmail.com", Scholar: "https://scholar.google.com/", GitHub: "https://github.com/yourusername", ORCID: "https://orcid.org/", CV: "cv.pdf" },
   bio: [
     "I study <strong>coastal and marine ecosystems</strong>: how climate change exposes nearshore species, what that means for their genetic diversity, and how machine learning can make estuary monitoring data more useful.",
     "✏️ Add a sentence about your background: your Ph.D., previous positions, and what you're working on now."
@@ -496,6 +497,19 @@ const SITE = {
   // cites (citation count), links: { PDF: "papers/file.pdf", DOI: "https://doi.org/..." }
   // A "Google Scholar" link is added automatically to every entry.
   publications: [
+    // Working papers: project = position in the projects list (0 = first); its "Abstract" button opens that project's pop-up
+    { year: 2026, type: "working", project: 0, img: "images/figures/cobia-moe-ssm.png", title: "Movement-constrained species distributions: a Mixture-of-Experts Step Selection Model for cobia",
+      authors: "L Li, et al.", venue: "Working paper" },
+    { year: 2026, type: "working", project: 1, img: "images/figures/nekton-bayesian-gnn.png", title: "Bayesian deep learning reveals the role of environmental and community metrics in predicting estuarine nekton populations",
+      authors: "L Li, et al.", venue: "Working paper" },
+    { year: 2026, type: "working", project: 2, img: "images/figures/genetic-diversity-cnp.png", title: "Population genomics for conservation: downscaling sparse genetic data into fine-resolution diversity maps",
+      authors: "L Li, et al.", venue: "Working paper" },
+    { year: 2026, type: "working", project: 3, img: "images/figures/debias-framework.png", title: "Debiasing biodiversity data with deep learning",
+      authors: "L Li, et al.", venue: "Working paper" },
+    { year: 2026, type: "working", project: 4, img: "images/figures/cobia-swim-speed.png", title: "Predicting fish swimming speed to improve satellite telemetry geolocation",
+      authors: "L Li, et al.", venue: "Working paper" },
+    { year: 2026, type: "working", project: 5, img: "images/figures/disease-staged-model.png", title: "Linking water, bird migration and agriculture to mosquito-borne disease risk",
+      authors: "L Li, et al.", venue: "Working paper" },
     { year: 2026, type: "preprint", title: "Variation in seagrass habitat use by fishery-important nekton across the Gulf of Mexico revealed by deep transfer learning with trophic group priors",
       authors: "L Li, J Rodemann, C Hayes, B Belgrad, KM Darnell, CW Martin, et al.", venue: "bioRxiv, 2026.05.26.727508" },
     { year: 2026, type: "journal", title: "Hurricanes drive bird displacement revealed by deep learning species distribution models",
@@ -528,7 +542,7 @@ const SITE = {
     img: "images/photos/gull.jpg",
     office: "National Center for Ecological Analysis and Synthesis<br>✏️ Street address<br>Santa Barbara, CA",
     elsewhere: { GitHub: "#", Bluesky: "#", LinkedIn: "#" },
-    formspreeId: "YOUR_FORM_ID"   // free form backend: sign up at formspree.io
+    formspreeId: "xzedzpjj"   // free form backend: sign up at formspree.io
   }
 };
 
@@ -629,23 +643,27 @@ function openProject(p) {
 function closeProject() { $("#modal").classList.remove("open"); document.body.style.overflow = ""; }
 
 function renderPublications() {
+  const LABEL = { working: "Working papers", journal: "Journal", preprint: "Preprint", conference: "Conference", data: "Data" };
+  const TAG = { working: "working paper" };
+  const nPub = SITE.publications.filter(p => p.type !== "working").length, nWork = SITE.publications.length - nPub;
   $("#tab-publications").innerHTML = `<h2>Publications</h2>
-    <p class="lead">${SITE.publications.length} publications · full list on <a href="${SITE.socials.Scholar}">Google Scholar</a>.</p>
+    <p class="lead">${nPub} publications${nWork ? ` and ${nWork} working papers` : ""} · full list on <a href="${SITE.socials.Scholar}">Google Scholar</a>.</p>
     <div class="pub-tools"><input id="pubSearch" type="search" placeholder="Search title, author, journal…">
-      ${["all", ...["journal", "preprint", "conference", "data"].filter(t => SITE.publications.some(p => p.type === t))].map((t, i) => `<button class="chip ${i ? "" : "on"}" data-type="${t}">${t[0].toUpperCase() + t.slice(1)}</button>`).join("")}</div>
+      ${["all", ...Object.keys(LABEL).filter(t => SITE.publications.some(p => p.type === t))].map((t, i) => `<button class="chip ${i ? "" : "on"}" data-type="${t}">${t === "all" ? "All" : LABEL[t]}</button>`).join("")}</div>
     <div id="pubList"></div>`;
   let filter = "all";
+  const card = p => `<div class="card pub ${p.img ? "" : "no-img"}">${p.img ? pic(p.img, p.title, "fig", "pubs", p.title, p.full) : ""}
+        <div><div class="pub-title">${p.title}</div><div class="meta">${p.authors.split(SITE.me).join(`<span class="me">${SITE.me}</span>`)}</div>
+        <div class="meta"><em>${p.venue}</em> <span class="tag" style="margin-left:6px">${TAG[p.type] || p.type}</span>${p.cites ? `<span class="meta" style="margin-left:4px">Cited by ${p.cites}</span>` : ""}</div>
+        <div class="links">${p.project != null ? `<a href="#" data-proj="${p.project}">Abstract</a>` : ""}${links(p.type === "working" ? p.links : { ...p.links, "Google Scholar": "https://scholar.google.com/scholar?q=" + encodeURIComponent('"' + p.title + '"') })}</div></div></div>`;
   const draw = () => {
     const q = $("#pubSearch").value.toLowerCase();
-    const shown = SITE.publications.filter(p => (filter === "all" || p.type === filter) && [p.title, p.authors, p.venue].join(" ").toLowerCase().includes(q)).sort((a, b) => b.year - a.year);
-    let html = "", yr = null;
-    shown.forEach(p => {
-      if (p.year !== yr) { yr = p.year; html += `<div class="year">${yr}</div>`; }
-      html += `<div class="card pub ${p.img ? "" : "no-img"}">${p.img ? pic(p.img, p.title, "fig", "pubs", p.title, p.full) : ""}
-        <div><div class="pub-title">${p.title}</div><div class="meta">${p.authors.split(SITE.me).join(`<span class="me">${SITE.me}</span>`)}</div>
-        <div class="meta"><em>${p.venue}</em> <span class="tag" style="margin-left:6px">${p.type}</span>${p.cites ? `<span class="meta" style="margin-left:4px">Cited by ${p.cites}</span>` : ""}</div><div class="links">${links({ ...p.links, "Google Scholar": "https://scholar.google.com/scholar?q=" + encodeURIComponent('"' + p.title + '"') })}</div></div></div>`;
-    });
+    const shown = SITE.publications.filter(p => (filter === "all" || p.type === filter) && [p.title, p.authors, p.venue].join(" ").toLowerCase().includes(q));
+    const work = shown.filter(p => p.type === "working"), pubs = shown.filter(p => p.type !== "working").sort((a, b) => b.year - a.year);
+    let html = work.length ? `<div class="year">Working papers</div>` + work.map(card).join("") : "", yr = null;
+    pubs.forEach(p => { if (p.year !== yr) { yr = p.year; html += `<div class="year">${yr}</div>`; } html += card(p); });
     $("#pubList").innerHTML = html || `<p class="meta">No matches.</p>`;
+    document.querySelectorAll("#pubList [data-proj]").forEach(a => a.onclick = e => { e.preventDefault(); openProject(SITE.projects[a.dataset.proj]); });
   };
   $("#pubSearch").oninput = draw;
   document.querySelectorAll("#tab-publications .chip").forEach(c => c.onclick = () => {
@@ -661,6 +679,7 @@ function renderContact() {
     <div class="card contact">${pic(c.img, "Contact", "", "contact")}
       <div class="body"><dl>
         <dt>Email</dt><dd><a href="mailto:${SITE.email}">${SITE.email}</a></dd>
+        ${SITE.phone ? `<dt>Phone</dt><dd><a href="tel:+1${SITE.phone.replace(/\D/g, "")}">${SITE.phone}</a></dd>` : ""}
         <dt>Office</dt><dd>${c.office}</dd>
         <dt>Elsewhere</dt><dd>${Object.entries(c.elsewhere).map(([k, v]) => `<a href="${v}">${k}</a>`).join(" · ")}</dd></dl>
         <form action="https://formspree.io/f/${c.formspreeId}" method="POST">
@@ -681,6 +700,7 @@ document.querySelector("footer").innerHTML = `© ${new Date().getFullYear()} ${S
 
 /* Tabs (hash-based, so yoursite/#publications links work) */
 function showTab() {
+  if (document.getElementById("modal")?.classList.contains("open")) closeProject();
   const id = (location.hash || "#about").slice(1);
   const t = document.getElementById("tab-" + id) ? id : "about";
   document.querySelectorAll("main > section").forEach(s => s.classList.toggle("active", s.id === "tab-" + t));
