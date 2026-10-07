@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Your Name · Researcher</title>
 <meta name="description" content="Personal academic website of Your Name — research, projects, publications, and working groups.">
+<link rel="icon" type="image/png" href="images/logo/vitaterra-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -95,6 +96,9 @@
   .facts .card { padding: 20px 22px; }
   .facts ul { margin: 0; padding-left: 18px; }
 
+  .org-logo { display: block; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; margin-top: 16px; max-width: 220px; }
+  .org-logo img { width: 100%; height: auto; }
+  .contact .org-logo { margin: 4px 0 8px; }
   /* Masonry photo gallery */
   .gallery { columns: 3 260px; column-gap: 14px; }
   .gallery figure { margin: 0 0 14px; break-inside: avoid; border-radius: 14px; overflow: hidden; position: relative; box-shadow: var(--shadow); }
@@ -319,21 +323,21 @@
    ===================================================================== */
 const SITE = {
   name: "Liying Li",
-  title: "Researcher",
-  affiliation: "NCEAS · UC Santa Barbara",
+  title: "Founder & Sole Owner",
+  orgLogo: "images/logo/vitaterra-logo.png",
+  orgUrl: "",   // add your company website here if you have one, e.g. "https://vitaterra-analytics.com"
+  affiliation: "VitaTerra Analytics LLC",
   tagline: "Coastal and marine ecology · population genetics · climate change · machine learning.",
   email: "liliying88@gmail.com",
   phone: "(209) 828-1261",
   heroImage: "images/photos/fish-school.jpg",
   heroCaption: "🐟 Schooling fish",
   profileImage: "images/profile.jpg",
-  socials: { Email: "mailto:liliying88@gmail.com", Scholar: "https://scholar.google.com/", GitHub: "https://github.com/yourusername", ORCID: "https://orcid.org/", CV: "cv.pdf" },
+  socials: { Email: "mailto:liliying88@gmail.com", "Google Scholar": "https://scholar.google.com/citations?user=a3bBiUIAAAAJ&hl=en", GitHub: "https://github.com/lily6966", CV: "CV_LiyingLi.pdf" },
   bio: [
-    "I study <strong>coastal and marine ecosystems</strong>: how climate change exposes nearshore species, what that means for their genetic diversity, and how machine learning can make estuary monitoring data more useful.",
-    "✏️ Add a sentence about your background: your Ph.D., previous positions, and what you're working on now."
+    "I develop structured deep learning and Bayesian methods for sparse, noisy, spatiotemporal observational data, and apply them to environmental and ecological questions that conventional models handle poorly. On the methods side, my recent work builds hierarchical and generative architectures with domain-informed priors; graph neural networks and sequence models for coupled spatial–temporal processes; hurdle and zero-inflated designs for sparse count data; mixture-of-experts models for multi-scale movement; and interpretability methods that recover which drivers actually matter. On the domain side, I work on biodiversity response to climate change and extreme events, coastal and fisheries systems, and coupled food–energy–water problems, where model outputs feed directly into management and policy decisions.",
+    "I am actively seeking collaborations that carry these methods into new domains — settings where data are sparse, spatially structured, unevenly sampled, and consequential enough that uncertainty must be modeled rather than ignored."
   ],
-  interests: ["Population genetic diversity", "Climate exposure (CMIP6 / SSP scenarios)", "Graph neural networks for monitoring data", "Estuarine fisheries & coastal birds"],
-  education: ["Ph.D., Discipline — University, Year", "M.S., Discipline — University, Year", "B.S., Discipline — University, Year"],
 
   // Photo gallery on the About page — add as many as you like
   gallery: [
@@ -407,7 +411,7 @@ const SITE = {
 
       { short: "Data management", img: "images/art/data.jpg", inset: "images/photos/red-drum.jpg",
         title: "Language models for environmental and ecological data management",
-        summary: "Environmental science is not short of data; it is short of usable data. Decades of monitoring and synthesis projects sit in repositories with incomplete metadata, inconsistent units and taxonomies, and undocumented methods. FAIR principles are widely endorsed and rarely achieved, because the work they require is skilled, tedious and seldom funded. Working at NCEAS has made clear to me that this curation bottleneck now limits environmental AI as much as model architecture does.",
+        summary: "Environmental science is not short of data; it is short of usable data. Decades of monitoring and synthesis projects sit in repositories with incomplete metadata, inconsistent units and taxonomies, and undocumented methods. FAIR principles are widely endorsed and rarely achieved, because the work they require is skilled, tedious and seldom funded. Working on synthesis projects built on exactly this kind of heterogeneous data has made clear to me that this curation bottleneck now limits environmental AI as much as model architecture does.",
         points: [
           { h: "Core curation tasks", text: "Drafting and validating metadata in standards such as the Ecological Metadata Language; annotating variables, units and methods against ontologies; reconciling taxonomic names; matching schemas across monitoring programs; and flagging implausible values, unit errors and protocol changes." },
           { h: "Agentic, verifiable pipelines", text: "The language model proposes; deterministic tools (unit converters, taxonomic authorities, geospatial validators, schema checkers) verify; and a human curator approves. Every transformation is recorded as reproducible code." },
@@ -498,16 +502,16 @@ const SITE = {
   // A "Google Scholar" link is added automatically to every entry.
   publications: [
     // Working papers: project = position in the projects list (0 = first); its "Abstract" button opens that project's pop-up
-    { year: 2026, type: "working", project: 0, img: "images/figures/cobia-moe-ssm.png", title: "Movement-constrained species distributions: a Mixture-of-Experts Step Selection Model for cobia",
-      authors: "L Li, et al.", venue: "Working paper" },
-    { year: 2026, type: "working", project: 1, img: "images/figures/nekton-bayesian-gnn.png", title: "Bayesian deep learning reveals the role of environmental and community metrics in predicting estuarine nekton populations",
-      authors: "L Li, et al.", venue: "Working paper" },
-    { year: 2026, type: "working", project: 2, img: "images/figures/genetic-diversity-cnp.png", title: "Population genomics for conservation: downscaling sparse genetic data into fine-resolution diversity maps",
-      authors: "L Li, et al.", venue: "Working paper" },
-    { year: 2026, type: "working", project: 3, img: "images/figures/debias-framework.png", title: "Debiasing biodiversity data with deep learning",
-      authors: "L Li, et al.", venue: "Working paper" },
-    { year: 2026, type: "working", project: 4, img: "images/figures/cobia-swim-speed.png", title: "Predicting fish swimming speed to improve satellite telemetry geolocation",
-      authors: "L Li, et al.", venue: "Working paper" },
+    { year: 2026, type: "working", project: 0, img: "images/figures/cobia-moe-ssm.png", title: "Distributions and movement patterns of cobia (<em>Rachycentron canadum</em>) in the Gulf of America modeled using a multi-scale mixture-of-experts step-selection function",
+      authors: "L Li, L Griffin, M Lamont, K Kelley, J Rodemann, M Baustian, et al.", venue: "Under organizational review" },
+    { year: 2026, type: "working", project: 1, img: "images/figures/nekton-bayesian-gnn.png", title: "Bayesian GNN-nLSTM discovers the relative importance of abiotic and biotic interactions to fish stocks",
+      authors: "L Li, K Flaherty Walia, M Schram", venue: "In preparation" },
+    { year: 2026, type: "working", project: 2, img: "images/figures/genetic-diversity-cnp.png", title: "Mapping coastal species genetic diversity in California and informing ecosystem-based conservation to enhance climate change resiliency",
+      authors: "E Nelson, L Li", venue: "In preparation" },
+    { year: 2026, type: "working", project: 3, img: "images/figures/debias-framework.png", title: "Debiasing biodiversity pattern with deep learning",
+      authors: "L Li, Z Wang, J Nesslage, B Zhang", venue: "In preparation" },
+    { year: 2026, type: "working", project: 4, img: "images/figures/cobia-swim-speed.png", title: "Modeling fish varying swimming speeds across movement states, seasons, and life stages",
+      authors: "L Li, L Griffin, M Lamont, K Kelley, J Rodemann, M Baustian, et al.", venue: "In preparation" },
     { year: 2026, type: "working", project: 5, img: "images/figures/disease-staged-model.png", title: "Linking water, bird migration and agriculture to mosquito-borne disease risk",
       authors: "L Li, et al.", venue: "Working paper" },
     { year: 2026, type: "preprint", title: "Variation in seagrass habitat use by fishery-important nekton across the Gulf of Mexico revealed by deep transfer learning with trophic group priors",
@@ -540,8 +544,8 @@ const SITE = {
 
   contact: {
     img: "images/photos/gull.jpg",
-    office: "National Center for Ecological Analysis and Synthesis<br>✏️ Street address<br>Santa Barbara, CA",
-    elsewhere: { GitHub: "#", Bluesky: "#", LinkedIn: "#" },
+    office: "VitaTerra Analytics LLC",
+    elsewhere: { "Google Scholar": "https://scholar.google.com/citations?user=a3bBiUIAAAAJ&hl=en", GitHub: "https://github.com/lily6966", CV: "CV_LiyingLi.pdf" },
     formspreeId: "xzedzpjj"   // free form backend: sign up at formspree.io
   }
 };
@@ -563,24 +567,15 @@ function renderAbout() {
       <aside>
         ${pic(s.profileImage, s.name, "avatar", "profile")}
         <div class="profile-meta"><strong>${s.name}</strong><span class="meta">${s.title}<br>${s.affiliation}</span></div>
+        ${s.orgLogo ? `<${s.orgUrl ? `a href="${s.orgUrl}"` : "div"} class="org-logo"><img src="${s.orgLogo}" alt="${s.affiliation}"></${s.orgUrl ? "a" : "div"}>` : ""}
         <div class="socials">${links(s.socials)}</div>
       </aside>
       <div class="bio">
         ${s.bio.map(p => `<p>${p}</p>`).join("")}
-        <div class="facts">
-          <div class="card"><h3>Interests</h3><ul>${s.interests.map(i => `<li>${i}</li>`).join("")}</ul></div>
-          <div class="card"><h3>Education</h3><ul>${s.education.map(i => `<li>${i}</li>`).join("")}</ul></div>
-        </div>
       </div>
     </div>
-    <div class="block">
-      <div class="block-head"><div><div class="kicker">Photos</div><h2>In the field</h2></div><span class="meta">Click any photo to enlarge</span></div>
-      <div class="gallery">${s.gallery.map(g => `<figure><img src="${g.img}" alt="${g.caption}" loading="lazy" data-zoom data-group="gallery" data-caption="${g.caption}" onerror="this.parentElement.remove()"><figcaption>${g.caption}</figcaption></figure>`).join("")}</div>
-    </div>
-    <div class="block">
-      <div class="block-head"><div><div class="kicker">Updates</div><h2>News</h2></div></div>
-      <div class="news">${s.news.map(n => `<article class="card">${pic(n.img, n.title, "", "news")}<div class="body"><div class="meta">${n.date}</div><h3>${n.title}</h3><p class="meta" style="margin:0">${n.text}</p></div></article>`).join("")}</div>
-    </div>`;
+
+`;
 }
 
 function renderResearch() {
@@ -647,7 +642,7 @@ function renderPublications() {
   const TAG = { working: "working paper" };
   const nPub = SITE.publications.filter(p => p.type !== "working").length, nWork = SITE.publications.length - nPub;
   $("#tab-publications").innerHTML = `<h2>Publications</h2>
-    <p class="lead">${nPub} publications${nWork ? ` and ${nWork} working papers` : ""} · full list on <a href="${SITE.socials.Scholar}">Google Scholar</a>.</p>
+    <p class="lead">${nPub} publications${nWork ? ` and ${nWork} working papers` : ""} · full list on <a href="${SITE.socials["Google Scholar"]}">Google Scholar</a>.</p>
     <div class="pub-tools"><input id="pubSearch" type="search" placeholder="Search title, author, journal…">
       ${["all", ...Object.keys(LABEL).filter(t => SITE.publications.some(p => p.type === t))].map((t, i) => `<button class="chip ${i ? "" : "on"}" data-type="${t}">${t === "all" ? "All" : LABEL[t]}</button>`).join("")}</div>
     <div id="pubList"></div>`;
@@ -680,7 +675,7 @@ function renderContact() {
       <div class="body"><dl>
         <dt>Email</dt><dd><a href="mailto:${SITE.email}">${SITE.email}</a></dd>
         ${SITE.phone ? `<dt>Phone</dt><dd><a href="tel:+1${SITE.phone.replace(/\D/g, "")}">${SITE.phone}</a></dd>` : ""}
-        <dt>Office</dt><dd>${c.office}</dd>
+        <dt>Organization</dt><dd>${SITE.orgLogo ? `<div class="org-logo"><img src="${SITE.orgLogo}" alt="${c.office}"></div>` : ""}${SITE.title}, ${c.office}</dd>
         <dt>Elsewhere</dt><dd>${Object.entries(c.elsewhere).map(([k, v]) => `<a href="${v}">${k}</a>`).join(" · ")}</dd></dl>
         <form action="https://formspree.io/f/${c.formspreeId}" method="POST">
           <label for="n">Name</label><input id="n" name="name" required>
@@ -696,7 +691,7 @@ renderAbout(); renderResearch(); renderProjects(); renderPublications(); renderC
 document.title = `${SITE.name} · ${SITE.title}`;
 $("#brand").textContent = SITE.name;
 $("#yr").textContent = new Date().getFullYear();
-document.querySelector("footer").innerHTML = `© ${new Date().getFullYear()} ${SITE.name} · Text CC BY 4.0 · Code MIT · Photos © their respective owners · Hosted on GitHub Pages`;
+document.querySelector("footer").innerHTML = `© ${new Date().getFullYear()} ${SITE.name} · ${SITE.affiliation} · Text CC BY 4.0 · Code MIT · Photos © their respective owners · Hosted on GitHub Pages`;
 
 /* Tabs (hash-based, so yoursite/#publications links work) */
 function showTab() {
